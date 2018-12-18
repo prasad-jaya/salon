@@ -1,10 +1,26 @@
 const express = require('express')
 const router = express.Router()
-const mysql = require('mysql')
 const bodyParser = require('body-parser')
-const connection = getconnection();
-router.use(bodyParser.urlencoded({extended: false}))
+const cors = require('cors')
+
+router.use(cors)
+
 router.use(express.static('./public'))
+
+router.use(bodyParser.urlencoded({extended: false}))
+router.use(bodyParser.json);
+
+const connection = require('../DBconnect')
+console.log("sdsdsdsd")
+
+
+router.post('/getdata',(req,res)=>{
+
+    console.log("sdsdsdsd")
+    const typeword = req.body.word
+    Console.log(typeword)
+})
+
 
 router.get("/users",(req,res) => {
     // var user1 = {firstName:"Prasad", Lastname:"jayasundara"}
@@ -24,7 +40,7 @@ router.get("/users",(req,res) => {
 
 
 
-
+//SIGNUP
 router.post('/user_create',(req, res) => {
     console.log("create new user")
     //res.end();
@@ -51,7 +67,7 @@ router.post('/user_create',(req, res) => {
 })
 
 
-
+//LOGIN
 router.post('/user_login',(req, res)  =>{
     const email= req.body.Email
     const pass = req.body.Password
@@ -103,31 +119,6 @@ router.get("/", (req, res) =>{
    
 })
 
-
-
-
-
-//ConfigDatabase Connection
-function getconnection(){
-
-    const connection = mysql.createConnection({
-        host: 'localhost',
-        user: 'root',
-        password:'',
-        database: 'salon'
-    })
-
-    connection.connect(function (err){
-        if(!err){
-            console.log("Database Connected")
-        }
-        else{
-            console.log("Error Database Connection")
-        }
-    })
-
-    return connection
-}
 
 
 module.exports = router
