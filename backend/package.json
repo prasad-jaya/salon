@@ -14,5 +14,9 @@
     "express": "^4.16.4",
     "mysql": "^2.16.0",
     "nodemon": "^1.18.9"
+  },
+  "devDependencies": {
+    "file-loader": "^2.0.0",
+    "url-loader": "^1.1.2"
   }
 }

@@ -3,23 +3,59 @@ const router = express.Router()
 const bodyParser = require('body-parser')
 const cors = require('cors')
 
-router.use(cors)
+
 
 router.use(express.static('./public'))
-
+router.use(cors())
 router.use(bodyParser.urlencoded({extended: false}))
-router.use(bodyParser.json);
+router.use(bodyParser.json());
 
 const connection = require('../DBconnect')
-console.log("sdsdsdsd")
 
 
-router.post('/getdata',(req,res)=>{
 
-    console.log("sdsdsdsd")
+
+
+
+router.post('/get',(req,res)=>{
+
+    console.log("heloooooowwww")
     const typeword = req.body.word
-    Console.log(typeword)
+    console.log(typeword);
+
+    if(typeword==''){
+        console.log("huuuu");
+    }
+    
+    const sqlq ="SELECT FirstName,Email,Password FROM users WHERE FirstName=?"
+    connection.query(sqlq,[typeword],(err,rows,fields) =>{
+        
+        if(err){
+            console.log("Failed in Query")
+            res.sendStatus(404)
+            return
+        }
+        else{
+            console.log("Susscessfully Executed")
+            res.json({msg:true,rows})
+        }
+    })
+    
+    
+
+    
+
+
+
+    
+
+
+
+    
 })
+
+
+
 
 
 router.get("/users",(req,res) => {
