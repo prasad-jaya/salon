@@ -27,7 +27,7 @@ router.post('/get',(req,res)=>{
         console.log("huuuu");
     }
     
-    const sqlq ="SELECT FirstName,Email,Password FROM users WHERE FirstName=?"
+    const sqlq ="SELECT UserID,FirstName,Email,Password FROM users WHERE FirstName=?"
     connection.query(sqlq,[typeword],(err,rows,fields) =>{
         
         if(err){

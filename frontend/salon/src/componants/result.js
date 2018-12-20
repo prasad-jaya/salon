@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import "./result.css";
+import { NavLink, Link } from "react-router-dom";
+
 
 
 class Result extends Component {
@@ -11,7 +13,7 @@ class Result extends Component {
     
     
     
-    if (this.props.resultsty.rows != undefined)
+    if (this.props.resultsty.rows !== undefined)
       var stylists = this.props.resultsty.rows.map(name => {
         return (
         //   <div className="col-lg-3">
@@ -35,31 +37,24 @@ class Result extends Component {
         //     </div>
         //   </div>
        
-     
+     <div key={name.UserID} className="row">
+     <a href="/Profile">
        <div className="card">
-       
+       {/* <NavLink to="/Profile">Profile</NavLink> */}
             <div className="box">
             <div className="img">
                 <img src={require('../img/Layer4.png')}></img>
             </div>
-                <h2>Prakash Prajapati<br></br><span>Web Graphic Designer</span></h2>
+                <h2>{name.FirstName}<br></br><span>Web Graphic Designer</span></h2>
                 <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
                         tempor incididunt ut labore et.</p>
-                    <span>
-                            <ul>
-                                <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                                <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                                <li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
-                                <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
-                                <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-                            </ul>
-                    </span>
+                  
         
             </div>
         </div>
-
-       
-       
+        
+       </a>
+        </div>
        );
       
     
@@ -69,7 +64,7 @@ class Result extends Component {
 
 
     
-    return <ul>{stylists}</ul>;
+    return <div className="con col align-self-center">{stylists}</div>;
     
   }
 }
