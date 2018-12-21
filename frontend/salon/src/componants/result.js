@@ -5,6 +5,10 @@ import { NavLink, Link } from "react-router-dom";
 
 
 class Result extends Component {
+
+  
+
+
   state = {};
   render() {
     console.log("results come from backend", this.props.resultsty.rows);
@@ -36,25 +40,27 @@ class Result extends Component {
         //       </div>
         //     </div>
         //   </div>
-       
-     <div key={name.UserID} className="row">
-     <a href="/Profile">
+    <Link key={name.UserID} to={{ pathname: "/Profile/"+name.UserID, data: name.UserID }}>
+   
+	   
+     
        <div className="card">
-       {/* <NavLink to="/Profile">Profile</NavLink> */}
+       
             <div className="box">
             <div className="img">
                 <img src={require('../img/Layer4.png')}></img>
             </div>
-                <h2>{name.FirstName}<br></br><span>Web Graphic Designer</span></h2>
+                <h2>{name.UserID}<br></br><span>Web Graphic Designer</span></h2>
                 <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
                         tempor incididunt ut labore et.</p>
                   
+      
         
-            </div>
+      
         </div>
-        
-       </a>
-        </div>
+      </div>
+
+        </Link>
        );
       
     
