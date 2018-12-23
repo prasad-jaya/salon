@@ -25,13 +25,14 @@ router.post('/get',(req,res)=>{
 
     if(typeword==''){
         console.log("huuuu");
+        res.json({msg:true,rows})
     }
     
-    const sqlq ="SELECT UserID,FirstName,Email,Password FROM users WHERE FirstName=?"
-    connection.query(sqlq,[typeword],(err,rows,fields) =>{
+    const sqlq ="SELECT UserID,FirstName,Email,Password FROM users WHERE FirstName LIKE '"+typeword+"%'"
+    connection.query(sqlq,(err,rows,fields) =>{
         
         if(err){
-            console.log("Failed in Query")
+            console.log("Failed in Query "+err)
             res.sendStatus(404)
             return
         }

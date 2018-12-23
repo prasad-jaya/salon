@@ -20,7 +20,7 @@ class Navbar extends Component {
                         <a className="nav-link" href="#"></a>
                     </li>
                     <li className="nav-item">
-                        <a className="nav-link" href="#">Pricing</a>
+                        <a className="nav-link" href="/search">Search</a>
                     </li>
                     </ul>
                     <form className="form-inline my-2 my-lg-0">

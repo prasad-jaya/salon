@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./result.css";
-import { NavLink, Link } from "react-router-dom";
-
+import { Link } from "react-router-dom";
+import Layout from '../Layout'
 
 
 class Result extends Component {
@@ -40,8 +40,10 @@ class Result extends Component {
         //       </div>
         //     </div>
         //   </div>
+        <div className="con">
+        
     <Link key={name.UserID} to={{ pathname: "/Profile/"+name.UserID, data: name.UserID }}>
-   
+    {/* <Layout resultsty={name.UserID }></Layout> */}
 	   
      
        <div className="card">
@@ -61,6 +63,7 @@ class Result extends Component {
       </div>
 
         </Link>
+        </div>
        );
       
     
