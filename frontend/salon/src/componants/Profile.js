@@ -169,8 +169,8 @@ class Profile extends Component {
               <i class="fa fa-phone"></i>
             </div>
             <div class="profile__contact-info-body">
-              <h5 class="profile__contact-info-heading">Work number</h5>
-              (000)987-65-43
+              <h5 class="profile__contact-info-heading">Location</h5>
+              Sydney
             </div>
           </div>
           <div class="profile__contact-info-item">
