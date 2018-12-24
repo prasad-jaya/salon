@@ -1,0 +1,46 @@
+.weekday{
+   display: flex ;
+   flex: 100%;
+   padding: 0,8rem;
+
+   font-size: 1.2rem;
+   color:black;
+   text-align: center;
+}
+
+.square {
+    
+    height: 60px;
+    width: 60px;
+    background-color: #555;
+    border-radius: 20%;
+    display: flex;
+    
+    
+  }
+
+  
+  .divspace{
+    padding-top: 50px;
+    padding-right: 20px;
+    padding-left: 25px;
+
+  }
+
+  .divspace2{
+      padding-top: 10px;
+      padding-left: 50px;
+      padding-right: 48px;
+      cursor: pointer;
+  }
+
+  .square2 {
+    
+    height: 60px;
+    width: 60px;
+    background-color:coral;
+    border-radius: 100%;
+    display: flex;
+    
+    
+  }

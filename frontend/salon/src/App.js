@@ -10,17 +10,17 @@ class App extends Component {
     return (
       <BrowserRouter>
       <div>
-      <Route path="/" component={Navbar} />
+      {/* <Route path="/" component={Navbar} /> */}
       
       
       <Switch>
-      <div className="container">
-        <div className="App">
+      {/* <div className="container"> */}
+        {/* <div className="App"> */}
          
          <Layout/>
 
-        </div>
-      </div>
+        {/* </div>
+      </div> */}
       </Switch>
       </div>
 
