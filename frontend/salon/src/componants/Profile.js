@@ -3,50 +3,98 @@ import './Profile.css';
 import ReactDOM from 'react-dom';
 import StarRatingComponent from 'react-star-rating-component';
 import StarRatings from 'react-star-ratings';
+import  Calender from './calender'
+import axios from 'axios';
+
+
 
 
 class Profile extends Component {
 
+ 
     constructor(props) {
         super(props);
         this.state = {
-            rating: {}
+            rating: {},
+            UserId: this.props.match.params.UserID,
+            results: {}
          
         };
       }
-    render() { 
+         updateState(value) {
+        this.setState({
+          results: value
+          
+        });
+       
+      }
+     
 
+      componentWillMount(){
+          console.log("results come from Result", this.state.UserId); 
+        const ID = this.state.UserId;
+        axios.post('http://localhost:3005/get/stylist', {
+        word:ID,
+          
+          })
+        .then(function (response) {
+              
+              console.log("The error is ",response.data);
+              
+              this.updateState(response.data)
+              console.log("Data In result",response.data.rows)
+
+        }.bind(this))
+
+        .catch(function (error) {
+              console.log("The error is "+error);
+          });
+      }
+      
+      getKey(){
+       
         
+        
+        }
 
+
+
+
+    render() {
+      
+      
+      if (this.state.results.rows !== undefined)  
+      var stylists = this.state.results.rows.map(name => {
         return ( 
 
 <div className="cont"> 
-    <div class="container">
-        <div class="row">
+
+    <div className="container">
+        <div className="row">
             {/* <!-- User profile --> */}
-            <div class="col-xs-12 col-sm-9">
-                <div class="profile__avatar">
+            <div className="col-xs-12 col-sm-9">
+                <div className="profile__avatar">
                     <img src={require('../img/Layer3.png')}></img>
                 </div>
        
-                <div class="panel panel-default">
+                <div className="panel panel-default">
           
             
-                <div class="panel-body">
+                <div className="panel-body">
            
-                    <div class=" profile__header">
-                        <h4>Richard Roe <small>Administrator</small></h4>
-                        <p class="text-muted">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non nostrum odio cum repellat veniam eligendi rem cumque magnam autem delectus qui.
+                    <div className=" profile__header">
+                        <h4>{name.FirstName} <small>{name.Role}</small></h4>
+                        <p className="text-muted">
+                        {name.Description}
                         </p>
-                        <h6><strong>Hourly Rate : $20</strong></h6>
+                        <h6><strong>Hourly Rate : ${name.Hr_Rate}</strong></h6>
 
                     <div>
                    
                         <StarRatings 
                         name="rate2" 
                         isSelectable={false}
-                        rating={3}
+                        rating={name.Stars}
                         starSpacing={'3px'}
                         starRatedColor={'rgb(255,165,0)'}
                         starEmptyColor={'rgb(203, 211, 227)'}
@@ -68,17 +116,17 @@ class Profile extends Component {
         <h4><bold>Skills </bold></h4>
         <br/>
             
-            <div class="feedback panel-body">
-            <table class="table profile__table ">
+            <div className="feedback panel-body">
+            <table className="table profile__table ">
       
         
              
              
               
-                <span class="badge badge-pill badge-secondary">Secondary</span>
-                <span class="badge badge-pill badge-secondary">Success</span>
-                <span class="badge badge-pill badge-secondary">Danger</span>
-                <span class="badge badge-pill badge-secondary">Warning</span>
+                <span className="badge badge-pill badge-secondary">{name.Skills}</span>
+                <span className="badge badge-pill badge-secondary">Success</span>
+                <span className="badge badge-pill badge-secondary">Danger</span>
+                <span className="badge badge-pill badge-secondary">Warning</span>
                 </table>
       
          </div>
@@ -89,10 +137,12 @@ class Profile extends Component {
         <h4><bold>Work history and feedback </bold></h4>
         <br/>
         
-          <div class="feedback panel-body">
-            <table class="table profile__table ">
+
+
+          <div className="feedback panel-body">
+            <table className="table profile__table ">
             <h5>Richard Roe </h5>
-              <p class="text-muted blockquote-footer">
+              <p className="text-muted blockquote-footer">
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non nostrum odio cum repellat veniam eligendi rem cumque magnam autem delectus qui.
               </p>
               <div>
@@ -108,42 +158,68 @@ class Profile extends Component {
                    />
                </div>
 
-              <hr class="style14"></hr>
+              <hr className="style14"></hr>
+
+              <h5>Richard Roe </h5>
+              <p className="text-muted blockquote-footer">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non nostrum odio cum repellat veniam eligendi rem cumque magnam autem delectus qui.
+              </p>
+              <div>
+                   
+                   <StarRatings 
+                   name="rate2" 
+                   isSelectable={false}
+                   rating={4}
+                   starSpacing={'3px'}
+                   starRatedColor={'rgb(255,165,0)'}
+                   starEmptyColor={'rgb(203, 211, 227)'}
+                   starDimension={'20px'}
+                   />
+               </div>
+
+              <hr className="style14"></hr>
             </table>
           </div>
+
+
+ 
         
         </div>
-       
-       
+       <br/>
+       <div>
+       <h4><bold>Please Select Your Session </bold></h4>
+         <Calender/>
+       </div>
 
         
         
         
         <div className="workalin panel-body row" >
-        <div class="col-8">
+        <div className="col-8">
         <h4><bold>Required Hours </bold></h4></div>
-        <div class="col-4"><h4><bold>10Hr</bold></h4></div>
+        <div className="col-4"><h4><bold>10Hr</bold></h4></div>
     
         <br/>
 
-        <div class="col-8">
+        <div className="col-8">
         <h5>Stylist Hourly Rate </h5></div>
         <div class="col-4"><h5>$20 Hr</h5></div>
 
         <br/>
 
-        <div class="col-8">
+        <div className="col-8">
         <h5>Service Charge </h5></div>
-        <div class="col-4"><h5>20%</h5></div>
+        <div className="col-4"><h5>20%</h5></div>
         
         <br/>
 
-        <hr class="style14"></hr>
-        <div class="col-8">
+        <hr className="style14"></hr>
+        <div className="col-8">
         <h4><bold>Total Amount </bold></h4></div>
-        <div class="col-4"><h4><bold>$220</bold></h4></div>
+        <div className="col-4"><h4><bold>$220</bold></h4></div>
 
-
+        <br/>
+        <br/>
 
 
         </div>
@@ -151,58 +227,58 @@ class Profile extends Component {
             
 
       </div>
-      <div class="col-xs-12 col-sm-3">
+      <div className="col-xs-12 col-sm-3">
         
         {/* <!-- Contact user --> */}
         <p>
-          <a href="#" class="profile__contact-btn btn btn-lg btn-block btn-info" data-toggle="modal" data-target="#profile__contact-form">
+          <a href="#" className="profile__contact-btn btn btn-lg btn-block btn-info" data-toggle="modal" data-target="#profile__contact-form">
             Book Now!
           </a>
         </p>
 
-        <hr class="profile__contact-hr"></hr>
+        <hr className="profile__contact-hr"></hr>
         
         {/* <!-- Contact info --> */}
-        <div class="profile__contact-info">
-          <div class="profile__contact-info-item">
-            <div class="profile__contact-info-icon">
-              <i class="fa fa-phone"></i>
+        <div className="profile__contact-info">
+          <div className="profile__contact-info-item">
+            <div className="profile__contact-info-icon">
+              <i className="fa fa-phone"></i>
             </div>
-            <div class="profile__contact-info-body">
-              <h5 class="profile__contact-info-heading">Location</h5>
-              Sydney
+            <div className="profile__contact-info-body">
+              <h5 className="profile__contact-info-heading">Location</h5>
+              {name.Location}
             </div>
           </div>
-          <div class="profile__contact-info-item">
-            <div class="profile__contact-info-icon">
-              <i class="fa fa-phone"></i>
+          <div className="profile__contact-info-item">
+            <div className="profile__contact-info-icon">
+              <i className="fa fa-phone"></i>
             </div>
-            <div class="profile__contact-info-body">
-              <h5 class="profile__contact-info-heading">Mobile number</h5>
+            <div className="profile__contact-info-body">
+              <h5 className="profile__contact-info-heading">Mobile number</h5>
               (000)987-65-43
             </div>
           </div>
-          <div class="profile__contact-info-item">
-            <div class="profile__contact-info-icon">
-              <i class="fa fa-envelope-square"></i>
+          <div className="profile__contact-info-item">
+            <div className="profile__contact-info-icon">
+              <i className="fa fa-envelope-square"></i>
             </div>
-            <div class="profile__contact-info-body">
-              <h5 class="profile__contact-info-heading">E-mail address</h5>
+            <div className="profile__contact-info-body">
+              <h5 className="profile__contact-info-heading">E-mail address</h5>
               <a href="mailto:admin@domain.com">admin@domain.com</a>
             </div>
           </div>
-          <div class="profile__contact-info-item">
-            <div class="profile__contact-info-icon">
-              <i class="fa fa-map-marker"></i>
+          <div className="profile__contact-info-item">
+            <div className="profile__contact-info-icon">
+              <i className="fa fa-map-marker"></i>
             </div>
-            <div class="profile__contact-info-body">
-              <h5 class="profile__contact-info-heading">Work address</h5>
+            <div className="profile__contact-info-body">
+              <h5 className="profile__contact-info-heading">Work address</h5>
               Lorem ipsum dolor sit amet, consectetur adipisicing elit.
             </div>
           </div>
         </div>
 
-      
+       
      
     </div>
 </div>
@@ -210,6 +286,8 @@ class Profile extends Component {
             </div>
             </div>
          );
+        });
+        return <div >{stylists}</div>;
     }
 }
  

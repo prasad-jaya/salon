@@ -2,7 +2,14 @@ const express = require('express')
 const sty = express.Router()
 const bodyParser = require('body-parser')
 
+const cors = require('cors')
+
+
+sty.use(express.static('./public'))
+sty.use(cors())
 sty.use(bodyParser.urlencoded({extended: false}))
+sty.use(bodyParser.json());
+
 sty.use(express.static('./public'))
 
 
@@ -33,5 +40,38 @@ sty.post('/create_stylist',(req, res) => {
         res.end();
     })
 })
+
+
+sty.post('/get/stylist',(req,res)=>{
+
+    
+    const ID = req.body.word
+    console.log("addddooo",ID);
+
+    if(ID==''){
+        console.log("huuuuIIII");
+        res.json({msg:true,rows})
+    }
+    
+    const sqlq ="SELECT FirstName,Email,Location,Role,Description,Stars,Skills,Hr_Rate FROM stylist WHERE UserID = '"+ID+"'"
+    connection.query(sqlq,(err,rows,fields) =>{
+        
+        if(err){
+            console.log("Failed in Query "+err)
+            res.sendStatus(404)
+            return
+        }
+        else{
+            console.log("Susscessfully Executed")
+            res.json({msg:true,rows})
+        }
+    })
+    
+    
+    
+})
+
+
+
 
 module.exports = sty

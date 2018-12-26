@@ -10,7 +10,7 @@ class App extends Component {
     return (
       <BrowserRouter>
       <div>
-      {/* <Route path="/" component={Navbar} /> */}
+     {/* <Route path="/" component={Navbar} /> */}
       
       
       <Switch>

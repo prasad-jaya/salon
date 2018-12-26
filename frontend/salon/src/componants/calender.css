@@ -1,12 +1,17 @@
 .weekday{
    display: flex ;
    flex: 100%;
-   padding: 0,8rem;
-
-   font-size: 1.2rem;
-   color:black;
-   text-align: center;
+  
 }
+
+.weekday1{
+  display: flex ;
+  flex: 100%;
+  
+}
+
+
+
 
 .square {
     
@@ -20,17 +25,11 @@
   }
 
   
-  .divspace{
-    padding-top: 50px;
-    padding-right: 20px;
-    padding-left: 25px;
-
-  }
 
   .divspace2{
       padding-top: 10px;
-      padding-left: 50px;
-      padding-right: 48px;
+      padding-left: 30px;
+      padding-right: 30px;
       cursor: pointer;
   }
 
@@ -44,3 +43,21 @@
     
     
   }
+
+  .divspace{
+    padding-top: 10px;
+    padding-left: 0px;
+    padding-right: 48px;
+    cursor: pointer;
+    display: inline ;
+}
+
+.Evening{
+  margin-left: 44px !important;
+  margin-top: 5px;
+}
+
+.Evening2{
+  
+  margin-top: 15px;
+}

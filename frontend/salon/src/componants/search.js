@@ -112,7 +112,7 @@ getKey(e){
                         
                     
                 </div>
-                <div>{this.state.getword}</div>
+               
             </div>
         
 	
