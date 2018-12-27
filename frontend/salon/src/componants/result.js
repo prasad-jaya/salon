@@ -1,17 +1,12 @@
 import React, { Component } from "react";
 import "./result.css";
 import { Link } from "react-router-dom";
-import Layout from '../Layout'
-import  Profile from './Profile';
 
 
-var ID;
+
+
 class Result extends Component {
 
-  SendData = (e,userID) => {
-    ID = userID;
-    
-  }
 
 
   state = {};
@@ -32,12 +27,12 @@ class Result extends Component {
     {/* <Layout resultsty={name.UserID }></Layout> */}
 	   
      
-       <div onClick={(e) =>{this.SendData(e,name.UserID)}} className="card">
+       <div className="card">
        
        
             <div className="box">
             <div className="img">
-                <img src={require('../img/Layer4.png')}></img>
+                <img src={require('../img/Layer4.png')} alt="Stylist Profile Pic"></img>
             </div>
                 <h2>{name.FirstName}<br></br><span>Web Graphic Designer</span></h2>
                 <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod

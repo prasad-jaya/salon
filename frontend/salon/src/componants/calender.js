@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import moment from 'moment';
 import './calender.css';
 
-const week = moment.weekdaysShort();
+
 
 
 let divv1,divv2,divv3,divv4,divv5,divv6,divv7;
@@ -46,69 +46,69 @@ class Calender extends Component {
        
        
 
-            if(this.state.clickstate1 === false){
+            if(this.state.clickstate1 === false && id===1 ){
                 this.setState({clickstate1:true}) 
                 
             } 
-            if(this.state.clickstate1 === true){
+            if(this.state.clickstate1 === true && id===1 ){
                 this.setState({clickstate1:false})  
                 }
 
 
-            if(this.state.clickstate2 === false && id==2){
+            if(this.state.clickstate2 === false && id===2){
                 this.setState({clickstate2:true}) 
                
             } 
-            if(this.state.clickstate2 === true && id==2){
+            if(this.state.clickstate2 === true && id===2){
                 this.setState({clickstate2:false})  
                 }
 
             
-            if(this.state.clickstate3 === false && id==3){
+            if(this.state.clickstate3 === false && id===3){
                 this.setState({clickstate3:true}) 
                 
             } 
-            if(this.state.clickstate3 === true && id==3){
+            if(this.state.clickstate3 === true && id===3){
                 this.setState({clickstate3:false})  
             }
             
 
 
-            if(this.state.clickstate4 === false && id==4){
+            if(this.state.clickstate4 === false && id===4){
                 this.setState({clickstate4:true}) 
                
             } 
-            if(this.state.clickstate4 === true && id==4){
+            if(this.state.clickstate4 === true && id===4){
                 this.setState({clickstate4:false})  
             }
 
 
             
-            if(this.state.clickstate5 === false && id==5){
+            if(this.state.clickstate5 === false && id===5){
                 this.setState({clickstate5:true}) 
                
             } 
-            if(this.state.clickstate5 === true && id==5){
+            if(this.state.clickstate5 === true && id===5){
                 this.setState({clickstate5:false})  
             }
 
 
             
-            if(this.state.clickstate6 === false && id==6){
+            if(this.state.clickstate6 === false && id===6){
                 this.setState({clickstate6:true}) 
                
             } 
-            if(this.state.clickstate6 === true && id==6){
+            if(this.state.clickstate6 === true && id===6){
                 this.setState({clickstate6:false})  
             }
 
 
             
-            if(this.state.clickstate7 === false && id==7){
+            if(this.state.clickstate7 === false && id===7){
                 this.setState({clickstate7:true}) 
                
             } 
-            if(this.state.clickstate7 === true && id==7){
+            if(this.state.clickstate7 === true && id===7){
                 this.setState({clickstate7:false})  
             }
            
@@ -136,60 +136,60 @@ class Calender extends Component {
     onEveningClick = (e, day,id) =>{
         // alert("You Clicked Evening Slot On "+ day);
         
-        if(this.state.clickstateEvning1 === false && id==1){
+        if(this.state.clickstateEvning1 === false && id===1){
             this.setState({clickstateEvning1:true}) 
             
         } 
-        if(this.state.clickstateEvning1 === true && id==1){
+        if(this.state.clickstateEvning1 === true && id===1){
             this.setState({clickstateEvning1:false})  
             }
 
-        if(this.state.clickstateEvning2 === false && id==2){
+        if(this.state.clickstateEvning2 === false && id===2){
             this.setState({clickstateEvning2:true}) 
                 
             } 
-        if(this.state.clickstateEvning2 === true && id==2){
+        if(this.state.clickstateEvning2 === true && id===2){
             this.setState({clickstateEvning2:false})  
             }
 
-        if(this.state.clickstateEvning3 === false && id==3){
+        if(this.state.clickstateEvning3 === false && id===3){
             this.setState({clickstateEvning3:true}) 
                     
             } 
-        if(this.state.clickstateEvning3 === true && id==3){
+        if(this.state.clickstateEvning3 === true && id===3){
             this.setState({clickstateEvning3:false})  
             }
 
 
-            if(this.state.clickstateEvning4 === false && id==4){
+            if(this.state.clickstateEvning4 === false && id===4){
                 this.setState({clickstateEvning4:true}) 
                         
                 } 
-            if(this.state.clickstateEvning4 === true && id==4){
+            if(this.state.clickstateEvning4 === true && id===4){
                 this.setState({clickstateEvning4:false})  
             }
 
-            if(this.state.clickstateEvning5 === false && id==5){
+            if(this.state.clickstateEvning5 === false && id===5){
                 this.setState({clickstateEvning5:true}) 
                             
                 } 
-            if(this.state.clickstateEvning5 === true && id==5){
+            if(this.state.clickstateEvning5 === true && id===5){
                 this.setState({clickstateEvning5:false})  
                 }
 
-        if(this.state.clickstateEvning6 === false && id==6){
+        if(this.state.clickstateEvning6 === false && id===6){
             this.setState({clickstateEvning6:true}) 
                                 
             } 
-        if(this.state.clickstateEvning6 === true && id==6){
+        if(this.state.clickstateEvning6 === true && id===6){
             this.setState({clickstateEvning6:false})  
             }
 
-        if(this.state.clickstateEvning7 === false && id==7){
+        if(this.state.clickstateEvning7 === false && id===7){
             this.setState({clickstateEvning7:true}) 
                                     
             } 
-        if(this.state.clickstateEvning7 === true && id==7){
+        if(this.state.clickstateEvning7 === true && id===7){
              this.setState({clickstateEvning7:false})  
             }
     
@@ -221,7 +221,7 @@ class Calender extends Component {
         
         
 
-        if(checkstate1==true){
+        if(checkstate1===true){
             divv1 = <div className="square2"></div>
         }
         else{
@@ -279,7 +279,7 @@ class Calender extends Component {
 
 
         
-        if(checkstateEve1==true){
+        if(checkstateEve1===true){
             divvEV1 = <div className="square2"></div>
         }
         else{
@@ -287,7 +287,7 @@ class Calender extends Component {
         }
 
 
-        if(checkstateEve2==true){
+        if(checkstateEve2===true){
             divvEV2 = <div className="square2"></div>
         }
         else{
@@ -295,7 +295,7 @@ class Calender extends Component {
         }
 
 
-        if(checkstateEve3==true){
+        if(checkstateEve3===true){
             divvEV3 = <div className="square2"></div>
         }
         else{
@@ -304,7 +304,7 @@ class Calender extends Component {
 
 
         
-        if(checkstateEve4==true){
+        if(checkstateEve4===true){
             divvEV4 = <div className="square2"></div>
         }
         else{
@@ -312,21 +312,21 @@ class Calender extends Component {
         }
 
 
-        if(checkstateEve5==true){
+        if(checkstateEve5===true){
             divvEV5 = <div className="square2"></div>
         }
         else{
             divvEV5 = <div className="square"></div>
         }
 
-        if(checkstateEve6==true){
+        if(checkstateEve6===true){
             divvEV6 = <div className="square2"></div>
         }
         else{
             divvEV6 = <div className="square"></div>
         }
 
-        if(checkstateEve7==true){
+        if(checkstateEve7===true){
             divvEV7 = <div className="square2"></div>
         }
         else{
@@ -335,15 +335,7 @@ class Calender extends Component {
 
 
 
-        const weekdayMarkup = week.map(day => {
-        
-            return(
-               
-                <div key={day}>{day}</div>
-                
-            )
-        });
-
+       
       
         
         
@@ -447,14 +439,14 @@ class Calender extends Component {
         return (
             <React.Fragment>
           <div className="row">
-          <div class="col-md-11 offset-md-1"><div className="weekday1">{n7days}</div></div>
+          <div className="col-md-11 offset-md-1"><div className="weekday1">{n7days}</div></div>
           </div>
           <div className="row">         
-          <div class="col-md-1 Evening2">Morning</div><div class="col-md-11"><div className="weekday" >{slots1}</div></div>
+          <div className="col-md-1 Evening2">Morning</div><div className="col-md-11"><div className="weekday" >{slots1}</div></div>
           </div>
           <div className="row">         
          
-         <div class="col-md-1 Evening2">Evening</div><div class="col-md-11"><div className="weekday">{slotsEve1}</div></div>
+         <div className="col-md-1 Evening2">Evening</div><div className="col-md-11"><div className="weekday">{slotsEve1}</div></div>
           
           </div>
 

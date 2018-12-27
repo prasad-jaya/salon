@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './Profile.css';
-import ReactDOM from 'react-dom';
-import StarRatingComponent from 'react-star-rating-component';
+
 import StarRatings from 'react-star-ratings';
 import  Calender from './calender'
 import axios from 'axios';
@@ -67,14 +66,14 @@ class Profile extends Component {
       var stylists = this.state.results.rows.map(name => {
         return ( 
 
-<div className="cont"> 
+<div key={205} className="cont"> 
 
     <div className="container">
         <div className="row">
             {/* <!-- User profile --> */}
             <div className="col-xs-12 col-sm-9">
                 <div className="profile__avatar">
-                    <img src={require('../img/Layer3.png')}></img>
+                    <img src={require('../img/Layer3.png')} alt="PROFILE PIC"></img>
                 </div>
        
                 <div className="panel panel-default">
@@ -103,9 +102,7 @@ class Profile extends Component {
                     
                 </div>
 
-                        <p>
-                            <a href="#"></a>
-                        </p>
+                       
         </div>
     </div>
                 
@@ -113,11 +110,11 @@ class Profile extends Component {
 {/* SKILLS */}
 
 <div className="workalin panel-body" >
-        <h4><bold>Skills </bold></h4>
+        <h4> Skills </h4>
         <br/>
             
-            <div className="feedback panel-body">
-            <table className="table profile__table ">
+            <div className="feedback panel-body table profile__table">
+           
       
         
              
@@ -127,20 +124,20 @@ class Profile extends Component {
                 <span className="badge badge-pill badge-secondary">Success</span>
                 <span className="badge badge-pill badge-secondary">Danger</span>
                 <span className="badge badge-pill badge-secondary">Warning</span>
-                </table>
+              
       
          </div>
 </div>
         {/* <!-- User info --> */}
       
         <div className="workalin panel-body" >
-        <h4><bold>Work history and feedback </bold></h4>
+        <h4>Work history and feedback </h4>
         <br/>
         
 
 
-          <div className="feedback panel-body">
-            <table className="table profile__table ">
+          <div className="feedback panel-body table profile__table">
+           
             <h5>Richard Roe </h5>
               <p className="text-muted blockquote-footer">
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non nostrum odio cum repellat veniam eligendi rem cumque magnam autem delectus qui.
@@ -178,7 +175,7 @@ class Profile extends Component {
                </div>
 
               <hr className="style14"></hr>
-            </table>
+           
           </div>
 
 
@@ -187,7 +184,7 @@ class Profile extends Component {
         </div>
        <br/>
        <div>
-       <h4><bold>Please Select Your Session </bold></h4>
+       <h4>Please Select Your Session </h4>
          <Calender/>
        </div>
 
@@ -196,14 +193,14 @@ class Profile extends Component {
         
         <div className="workalin panel-body row" >
         <div className="col-8">
-        <h4><bold>Required Hours </bold></h4></div>
-        <div className="col-4"><h4><bold>10Hr</bold></h4></div>
+        <h4>Required Hours </h4></div>
+        <div className="col-4"><h4>10Hr</h4></div>
     
         <br/>
 
         <div className="col-8">
         <h5>Stylist Hourly Rate </h5></div>
-        <div class="col-4"><h5>$20 Hr</h5></div>
+        <div className="col-4"><h5>$20 Hr</h5></div>
 
         <br/>
 
@@ -215,8 +212,8 @@ class Profile extends Component {
 
         <hr className="style14"></hr>
         <div className="col-8">
-        <h4><bold>Total Amount </bold></h4></div>
-        <div className="col-4"><h4><bold>$220</bold></h4></div>
+        <h4>Total Amount </h4></div>
+        <div className="col-4"><h4>$220</h4></div>
 
         <br/>
         <br/>
@@ -231,7 +228,7 @@ class Profile extends Component {
         
         {/* <!-- Contact user --> */}
         <p>
-          <a href="#" className="profile__contact-btn btn btn-lg btn-block btn-info" data-toggle="modal" data-target="#profile__contact-form">
+          <a href="./successfulPage" className="profile__contact-btn btn btn-lg btn-block btn-info" data-toggle="modal" data-target="#profile__contact-form">
             Book Now!
           </a>
         </p>
@@ -287,6 +284,7 @@ class Profile extends Component {
             </div>
          );
         });
+      
         return <div >{stylists}</div>;
     }
 }

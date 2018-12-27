@@ -53,7 +53,7 @@ sty.post('/get/stylist',(req,res)=>{
         res.json({msg:true,rows})
     }
     
-    const sqlq ="SELECT FirstName,Email,Location,Role,Description,Stars,Skills,Hr_Rate FROM stylist WHERE UserID = '"+ID+"'"
+    const sqlq ="SELECT FirstName,Email,Location,Role,Description,Stars,Skills,Hr_Rate FROM stylist WHERE StylistID = '"+ID+"'"
     connection.query(sqlq,(err,rows,fields) =>{
         
         if(err){
