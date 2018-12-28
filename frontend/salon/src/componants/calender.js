@@ -1,17 +1,22 @@
 import React, { Component } from 'react';
 import moment from 'moment';
 import './calender.css';
-
+import Profile from './Profile';
+import { Route } from "react-router-dom";
 
 
 
 let divv1,divv2,divv3,divv4,divv5,divv6,divv7;
 let divvEV1,divvEV2,divvEV3,divvEV4,divvEV5,divvEV6,divvEV7;
+let time = 6;
+
 
 
 class Calender extends Component {
 
-    state={
+    constructor(props){
+        super(props)
+    this.state={
         dateContext: moment(),
         today: moment(),
         clickstate: false,
@@ -30,11 +35,15 @@ class Calender extends Component {
         clickstateEvning5: false,
         clickstateEvning6: false,
         clickstateEvning7: false,
+
+        Datacollection : [],
+        TimeSlot : []
         
         
-
-
     }
+
+    this.senddate = this.senddate.bind(this)
+}
 
 
 
@@ -47,72 +56,186 @@ class Calender extends Component {
        
 
             if(this.state.clickstate1 === false && id===1 ){
-                this.setState({clickstate1:true}) 
-                
+                this.setState({clickstate1:true})
+               
+                var newArray = this.state.Datacollection.slice();
+                var newArray2 = this.state.TimeSlot.slice();
+                newArray.push(day);
+                newArray2.push("Morning");     
+                this.setState({Datacollection:newArray})
+                this.setState({TimeSlot:newArray2})
+
+
             } 
             if(this.state.clickstate1 === true && id===1 ){
-                this.setState({clickstate1:false})  
+                this.setState({clickstate1:false}) 
+                var array = [...this.state.Datacollection];
+                var array2 = [...this.state.TimeSlot];
+                var index = array.indexOf(day)
+                var index2 = array.indexOf( "Morning" )
+                array.splice(index, 1);
+                array2.splice(index2, 1);
+                this.setState({Datacollection: array});
+                this.setState({TimeSlot: array2});
                 }
+
+
 
 
             if(this.state.clickstate2 === false && id===2){
                 this.setState({clickstate2:true}) 
+                var newArray = this.state.Datacollection.slice();
+                var newArray2 = this.state.TimeSlot.slice();
+                newArray.push(day);
+                newArray2.push("Morning");     
+                this.setState({Datacollection:newArray})
+                this.setState({TimeSlot:newArray2})
                
             } 
             if(this.state.clickstate2 === true && id===2){
                 this.setState({clickstate2:false})  
+                var array = [...this.state.Datacollection];
+                var array2 = [...this.state.TimeSlot];
+                var index = array.indexOf(day)
+                var index2 = array.indexOf( "Morning" )
+                array.splice(index, 1);
+                array2.splice(index2, 1);
+                this.setState({Datacollection: array});
+                this.setState({TimeSlot: array2});
                 }
 
             
+
+
             if(this.state.clickstate3 === false && id===3){
                 this.setState({clickstate3:true}) 
-                
+                var newArray = this.state.Datacollection.slice();
+                var newArray2 = this.state.TimeSlot.slice();
+                newArray.push(day);
+                newArray2.push("Morning");     
+                this.setState({Datacollection:newArray})
+                this.setState({TimeSlot:newArray2})
             } 
+
             if(this.state.clickstate3 === true && id===3){
-                this.setState({clickstate3:false})  
+                this.setState({clickstate3:false}) 
+                var array = [...this.state.Datacollection];
+                var array2 = [...this.state.TimeSlot];
+                var index = array.indexOf(day)
+                var index2 = array.indexOf( "Morning" )
+                array.splice(index, 1);
+                array2.splice(index2, 1);
+                this.setState({Datacollection: array});
+                this.setState({TimeSlot: array2});
             }
             
+
+
 
 
             if(this.state.clickstate4 === false && id===4){
                 this.setState({clickstate4:true}) 
+               var newArray = this.state.Datacollection.slice();
+                var newArray2 = this.state.TimeSlot.slice();
+                newArray.push(day);
+                newArray2.push("Morning");     
+                this.setState({Datacollection:newArray})
+                this.setState({TimeSlot:newArray2})
                
             } 
             if(this.state.clickstate4 === true && id===4){
-                this.setState({clickstate4:false})  
+                this.setState({clickstate4:false})
+                var array = [...this.state.Datacollection];
+                var array2 = [...this.state.TimeSlot];
+                var index = array.indexOf(day)
+                var index2 = array.indexOf( "Morning" )
+                array.splice(index, 1);
+                array2.splice(index2, 1);
+                this.setState({Datacollection: array});
+                this.setState({TimeSlot: array2});
             }
+
+
 
 
             
             if(this.state.clickstate5 === false && id===5){
                 this.setState({clickstate5:true}) 
+                var newArray = this.state.Datacollection.slice();
+                var newArray2 = this.state.TimeSlot.slice();
+                newArray.push(day);
+                newArray2.push("Morning");     
+                this.setState({Datacollection:newArray})
+                this.setState({TimeSlot:newArray2})
                
             } 
             if(this.state.clickstate5 === true && id===5){
-                this.setState({clickstate5:false})  
+                this.setState({clickstate5:false}) 
+                var array = [...this.state.Datacollection];
+                var array2 = [...this.state.TimeSlot];
+                var index = array.indexOf(day)
+                var index2 = array.indexOf( "Morning" )
+                array.splice(index, 1);
+                array2.splice(index2, 1);
+                this.setState({Datacollection: array});
+                this.setState({TimeSlot: array2});
             }
+
+
 
 
             
             if(this.state.clickstate6 === false && id===6){
                 this.setState({clickstate6:true}) 
+                var newArray = this.state.Datacollection.slice();
+                var newArray2 = this.state.TimeSlot.slice();
+                newArray.push(day);
+                newArray2.push("Morning");     
+                this.setState({Datacollection:newArray})
+                this.setState({TimeSlot:newArray2})
                
             } 
             if(this.state.clickstate6 === true && id===6){
-                this.setState({clickstate6:false})  
+                this.setState({clickstate6:false})
+                var array = [...this.state.Datacollection];
+                var array2 = [...this.state.TimeSlot];
+                var index = array.indexOf(day)
+                var index2 = array.indexOf( "Morning" )
+                array.splice(index, 1);
+                array2.splice(index2, 1);
+                this.setState({Datacollection: array});
+                this.setState({TimeSlot: array2});
             }
+
+
 
 
             
             if(this.state.clickstate7 === false && id===7){
                 this.setState({clickstate7:true}) 
+                var newArray = this.state.Datacollection.slice();
+                var newArray2 = this.state.TimeSlot.slice();
+                newArray.push(day);
+                newArray2.push("Morning");     
+                this.setState({Datacollection:newArray})
+                this.setState({TimeSlot:newArray2})
                
             } 
             if(this.state.clickstate7 === true && id===7){
-                this.setState({clickstate7:false})  
+                this.setState({clickstate7:false}) 
+                var array = [...this.state.Datacollection];
+                var array2 = [...this.state.TimeSlot];
+                var index = array.indexOf(day)
+                var index2 = array.indexOf( "Morning" )
+                array.splice(index, 1);
+                array2.splice(index2, 1);
+                this.setState({Datacollection: array});
+                this.setState({TimeSlot: array2});
             }
            
             
+
+
            
 
             console.log(this.state.clickstate)
@@ -126,6 +249,12 @@ class Calender extends Component {
             
             this.setState({clickstate:true})
             console.log(this.state.clickstate)
+
+            let senddate = this.senddate
+            setTimeout(function(){
+                senddate()
+            },2000)
+
             return(<div key={day}></div>)
             
        
@@ -138,64 +267,183 @@ class Calender extends Component {
         
         if(this.state.clickstateEvning1 === false && id===1){
             this.setState({clickstateEvning1:true}) 
+            var newArray = this.state.Datacollection.slice();
+            var newArray2 = this.state.TimeSlot.slice();
+            newArray.push(day);
+            newArray2.push("Evening");     
+            this.setState({Datacollection:newArray})
+            this.setState({TimeSlot:newArray2})
             
         } 
         if(this.state.clickstateEvning1 === true && id===1){
-            this.setState({clickstateEvning1:false})  
+            this.setState({clickstateEvning1:false}) 
+            var array = [...this.state.Datacollection];
+            var array2 = [...this.state.TimeSlot];
+            var index = array.indexOf(day)
+            var index2 = array.indexOf( "Evening" )
+            array.splice(index, 1);
+            array2.splice(index2, 1);
+            this.setState({Datacollection: array});
+            this.setState({TimeSlot: array2});
             }
+
+
+
 
         if(this.state.clickstateEvning2 === false && id===2){
             this.setState({clickstateEvning2:true}) 
+            var newArray = this.state.Datacollection.slice();
+            var newArray2 = this.state.TimeSlot.slice();
+            newArray.push(day);
+            newArray2.push("Evening");     
+            this.setState({Datacollection:newArray})
+            this.setState({TimeSlot:newArray2})
                 
             } 
         if(this.state.clickstateEvning2 === true && id===2){
             this.setState({clickstateEvning2:false})  
+            var array = [...this.state.Datacollection];
+            var array2 = [...this.state.TimeSlot];
+            var index = array.indexOf(day)
+            var index2 = array.indexOf( "Evening" )
+            array.splice(index, 1);
+            array2.splice(index2, 1);
+            this.setState({Datacollection: array});
+            this.setState({TimeSlot: array2});
             }
 
+
+
         if(this.state.clickstateEvning3 === false && id===3){
-            this.setState({clickstateEvning3:true}) 
+            this.setState({clickstateEvning3:true})
+            var newArray = this.state.Datacollection.slice();
+            var newArray2 = this.state.TimeSlot.slice();
+            newArray.push(day);
+            newArray2.push("Evening");     
+            this.setState({Datacollection:newArray})
+            this.setState({TimeSlot:newArray2})
                     
             } 
         if(this.state.clickstateEvning3 === true && id===3){
-            this.setState({clickstateEvning3:false})  
+            this.setState({clickstateEvning3:false})
+            var array = [...this.state.Datacollection];
+            var array2 = [...this.state.TimeSlot];
+            var index = array.indexOf(day)
+            var index2 = array.indexOf( "Evening" )
+            array.splice(index, 1);
+            array2.splice(index2, 1);
+            this.setState({Datacollection: array});
+            this.setState({TimeSlot: array2});  
             }
+
+
 
 
             if(this.state.clickstateEvning4 === false && id===4){
                 this.setState({clickstateEvning4:true}) 
+                var newArray = this.state.Datacollection.slice();
+            var newArray2 = this.state.TimeSlot.slice();
+            newArray.push(day);
+            newArray2.push("Evening");     
+            this.setState({Datacollection:newArray})
+            this.setState({TimeSlot:newArray2})
                         
                 } 
             if(this.state.clickstateEvning4 === true && id===4){
-                this.setState({clickstateEvning4:false})  
+                this.setState({clickstateEvning4:false}) 
+                var array = [...this.state.Datacollection];
+                var array2 = [...this.state.TimeSlot];
+                var index = array.indexOf(day)
+                var index2 = array.indexOf( "Evening" )
+                array.splice(index, 1);
+                array2.splice(index2, 1);
+                this.setState({Datacollection: array});
+                this.setState({TimeSlot: array2});  
             }
+
+
 
             if(this.state.clickstateEvning5 === false && id===5){
                 this.setState({clickstateEvning5:true}) 
-                            
+                var newArray = this.state.Datacollection.slice();
+                var newArray2 = this.state.TimeSlot.slice();
+                newArray.push(day);
+                newArray2.push("Evening");     
+                this.setState({Datacollection:newArray})
+                this.setState({TimeSlot:newArray2})
                 } 
             if(this.state.clickstateEvning5 === true && id===5){
-                this.setState({clickstateEvning5:false})  
+                this.setState({clickstateEvning5:false}) 
+                var array = [...this.state.Datacollection];
+                var array2 = [...this.state.TimeSlot];
+                var index = array.indexOf(day)
+                var index2 = array.indexOf( "Evening" )
+                array.splice(index, 1);
+                array2.splice(index2, 1);
+                this.setState({Datacollection: array});
+                this.setState({TimeSlot: array2});
                 }
 
+
+
         if(this.state.clickstateEvning6 === false && id===6){
-            this.setState({clickstateEvning6:true}) 
+            this.setState({clickstateEvning6:true})
+            var newArray = this.state.Datacollection.slice();
+            var newArray2 = this.state.TimeSlot.slice();
+            newArray.push(day);
+            newArray2.push("Evening");     
+            this.setState({Datacollection:newArray})
+            this.setState({TimeSlot:newArray2})
                                 
             } 
         if(this.state.clickstateEvning6 === true && id===6){
             this.setState({clickstateEvning6:false})  
+            var array = [...this.state.Datacollection];
+            var array2 = [...this.state.TimeSlot];
+            var index = array.indexOf(day)
+            var index2 = array.indexOf( "Evening" )
+            array.splice(index, 1);
+            array2.splice(index2, 1);
+            this.setState({Datacollection: array});
+            this.setState({TimeSlot: array2}); 
             }
+
+
 
         if(this.state.clickstateEvning7 === false && id===7){
             this.setState({clickstateEvning7:true}) 
+            var newArray = this.state.Datacollection.slice();
+            var newArray2 = this.state.TimeSlot.slice();
+            newArray.push(day);
+            newArray2.push("Evening");     
+            this.setState({Datacollection:newArray})
+            this.setState({TimeSlot:newArray2})
                                     
             } 
         if(this.state.clickstateEvning7 === true && id===7){
-             this.setState({clickstateEvning7:false})  
+             this.setState({clickstateEvning7:false}) 
+             var array = [...this.state.Datacollection];
+             var array2 = [...this.state.TimeSlot];
+             var index = array.indexOf(day)
+             var index2 = array.indexOf( "Evening" )
+             array.splice(index, 1);
+             array2.splice(index2, 1);
+             this.setState({Datacollection: array});
+             this.setState({TimeSlot: array2}); 
             }
     
+            let senddate = this.senddate
+            setTimeout(function(){
+                senddate()
+            },2000)
+            
 
     }
 
+
+    senddate(){
+        this.props.getdate(this.state.Datacollection,this.state.TimeSlot);
+    }
   
     render() { 
 
@@ -334,7 +582,8 @@ class Calender extends Component {
         }
 
 
-
+       
+       
        
       
         
@@ -347,6 +596,7 @@ class Calender extends Component {
 
         for(let i = 1; i<=7; i++){
             let next7= moment().add(i,'days').format('DD-MMMM')
+            let dateformat = moment().add(i,'days').format("YYYY-MM-DD")
             n7days.push(<div key={i} className="col-md-1 Evening">
             <div >{next7}</div>
         
@@ -356,53 +606,53 @@ class Calender extends Component {
 
             if(i===1){
                 slots1.push(<div key={i} className="col-md-1 Evening" id={i}>
-                <div onClick={(e) =>{this.onMorningClick(e,next7,i)}} >{divv1}</div> 
+                <div onClick={(e) =>{this.onMorningClick(e,dateformat,i)}} >{divv1}</div> 
                 </div>)
 
                 slotsEve1.push(<div key={i} className="col-md-1 Evening">
-                <div onClick={(e) =>{this.onEveningClick(e,next7,i)}} >{divvEV1}</div> 
+                <div onClick={(e) =>{this.onEveningClick(e,dateformat,i)}} >{divvEV1}</div> 
                 </div>)
             }
              
 
             if(i===2){
                 slots1.push(<div key={i} className="col-md-1 Evening">
-                <div onClick={(e) =>{this.onMorningClick(e,next7,i)}} >{divv2}</div> 
+                <div onClick={(e) =>{this.onMorningClick(e,dateformat,i)}} >{divv2}</div> 
                 </div>)
 
                 slotsEve1.push(<div key={i} className="col-md-1 Evening">
-                <div onClick={(e) =>{this.onEveningClick(e,next7,i)}} >{divvEV2}</div> 
+                <div onClick={(e) =>{this.onEveningClick(e,dateformat,i)}} >{divvEV2}</div> 
                 </div>)
             }
 
             if(i===3){
                 slots1.push(<div key={i} className="col-md-1 Evening">
-                <div onClick={(e) =>{this.onMorningClick(e,next7,i)}} >{divv3}</div> 
+                <div onClick={(e) =>{this.onMorningClick(e,dateformat,i)}} >{divv3}</div> 
                 </div>)
 
                 slotsEve1.push(<div key={i} className="col-md-1 Evening">
-                <div onClick={(e) =>{this.onEveningClick(e,next7,i)}} >{divvEV3}</div> 
+                <div onClick={(e) =>{this.onEveningClick(e,dateformat,i)}} >{divvEV3}</div> 
                 </div>)
             }
 
 
             if(i===4){
                 slots1.push(<div key={i} className="col-md-1 Evening">
-                <div onClick={(e) =>{this.onMorningClick(e,next7,i)}} >{divv4}</div> 
+                <div onClick={(e) =>{this.onMorningClick(e,dateformat,i)}} >{divv4}</div> 
                 </div>)
 
                 slotsEve1.push(<div key={i} className="col-md-1 Evening">
-                <div onClick={(e) =>{this.onEveningClick(e,next7,i)}} >{divvEV4}</div> 
+                <div onClick={(e) =>{this.onEveningClick(e,dateformat,i)}} >{divvEV4}</div> 
                 </div>)
             }
 
             if(i===5){
                 slots1.push(<div key={i} className="col-md-1 Evening">
-                <div onClick={(e) =>{this.onMorningClick(e,next7,i)}} >{divv5}</div> 
+                <div onClick={(e) =>{this.onMorningClick(e,dateformat,i)}} >{divv5}</div> 
                 </div>)
 
                 slotsEve1.push(<div key={i} className="col-md-1 Evening">
-                <div onClick={(e) =>{this.onEveningClick(e,next7,i)}} >{divvEV5}</div> 
+                <div onClick={(e) =>{this.onEveningClick(e,dateformat,i)}} >{divvEV5}</div> 
                 </div>)
 
             }
@@ -411,21 +661,21 @@ class Calender extends Component {
             
             if(i===6){
                 slots1.push(<div key={i} className="col-md-1 Evening">
-                <div onClick={(e) =>{this.onMorningClick(e,next7,i)}} >{divv6}</div> 
+                <div onClick={(e) =>{this.onMorningClick(e,dateformat,i)}} >{divv6}</div> 
                 </div>)
 
                 slotsEve1.push(<div key={i} className="col-md-1 Evening">
-                <div onClick={(e) =>{this.onEveningClick(e,next7,i)}} >{divvEV6}</div> 
+                <div onClick={(e) =>{this.onEveningClick(e,dateformat,i)}} >{divvEV6}</div> 
                 </div>)
             }
 
             if(i===7){
                 slots1.push(<div key={i} className="col-md-1 Evening">
-                <div  onClick={(e) =>{this.onMorningClick(e,next7,i)}} >{divv7}</div> 
+                <div  onClick={(e) =>{this.onMorningClick(e,dateformat,i)}} >{divv7}</div> 
                 </div>)
 
                 slotsEve1.push(<div key={i} className="col-md-1 Evening">
-                <div onClick={(e) =>{this.onEveningClick(e,next7,i)}} >{divvEV7}</div> 
+                <div onClick={(e) =>{this.onEveningClick(e,dateformat,i)}} >{divvEV7}</div> 
                 </div>)
             }
 
@@ -434,7 +684,7 @@ class Calender extends Component {
 
         }
         
-
+        console.log("Detailssss",this.state.Datacollection)
 
         return (
             <React.Fragment>
@@ -448,10 +698,10 @@ class Calender extends Component {
          
          <div className="col-md-1 Evening2">Evening</div><div className="col-md-11"><div className="weekday">{slotsEve1}</div></div>
           
+
+         
           </div>
-
-
-
+         
       
           
           </React.Fragment>

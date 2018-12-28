@@ -104,6 +104,32 @@ router.post('/user_create',(req, res) => {
 })
 
 
+router.post('/make_bookk',(req, res) => {
+    console.log("create new user")
+    //res.end();
+
+    //console.log("First Nane:" + req.body.create_first_name)
+    console.log("Last Nane:" + req.body.name)
+
+    const fname = req.body.create_first_name
+    const lname = req.body.create_last_name
+    const email = req.body.create_Email
+    const pass = req.body.create_Password
+
+    const querysrting ="Insert Into booking (StylistID,Timeslot,Status) values (?,?,'PENDING')"
+    connection.query(querysrting, [styID,Timeslot], (err,results,fields)  =>{
+        if(err){
+            console.log("Faild to insert" + err)
+            res.sendStatus(500)
+            return
+        }
+
+        console.log("Inserted",results.insertId);
+        res.end();
+    })
+})
+
+
 //LOGIN
 router.post('/user_login',(req, res)  =>{
     const email= req.body.Email
@@ -155,6 +181,10 @@ router.get("/", (req, res) =>{
     })
    
 })
+
+
+
+
 
 
 

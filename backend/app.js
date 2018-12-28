@@ -5,11 +5,13 @@ const app = express()
 const router = require('./routes/user')
 const sty = require('./routes/stylist')
 const owner = require('./routes/Owner')
+const booking = require('./routes/booking')
 
 
 app.use(router)
 app.use(sty)
 app.use(owner)
+app.use(booking)
 
 
 

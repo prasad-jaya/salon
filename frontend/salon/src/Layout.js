@@ -6,6 +6,7 @@ import Home from "./componants/Home";
 import Calender from "./componants/calender";
 import LogIn from "./componants/Login";
 import Navbar from "./componants/navbar";
+import checkbooking from "./componants/stylist/checkbooking"
 
 import {
   BrowserRouter as Router,
@@ -14,6 +15,8 @@ import {
   withRouter
 } from "react-router-dom";
 
+
+let isAuthenticatedd =false
 
 const fakeAuth = {
   isAuthenticated: false,
@@ -24,7 +27,7 @@ const fakeAuth = {
     setTimeout(cb, 100); // fake async
   },
   signout(cb) {
-    this.isAuthenticated = false;
+    this.isAuthenticated= false;
     
     setTimeout(cb, 100);
   }
@@ -154,8 +157,8 @@ class login extends Component {
 class Layout extends Component {
   constructor(props) {
     super(props);
-    this.state={isAuthenticated: false,
-      LogStatus: fakeAuth.isAuthenticated}
+    this.state={isAuthenticated: isAuthenticatedd,
+      LogStatus: isAuthenticatedd}
    
 
   }
@@ -182,6 +185,7 @@ class Layout extends Component {
         <Switch>
           <Route exact strict path="/" component={Home} />
           <Route exact strict path="/search" component={Search} />
+          <Route exact strict path="/checkbookings" component={checkbooking} />
           {/* <Route exact strict path="/Profile/:UserID"  component={Profile}/> */}
           <Route path="/login" component={login} />
           {/* <Route path="/log" render={()=>{return <Log authenticate={this.authenticate.bind(this)}/>}}/> */}

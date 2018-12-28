@@ -4,7 +4,7 @@ import './Profile.css';
 import StarRatings from 'react-star-ratings';
 import  Calender from './calender'
 import axios from 'axios';
-
+import moment from 'moment';
 
 
 
@@ -14,9 +14,12 @@ class Profile extends Component {
     constructor(props) {
         super(props);
         this.state = {
+          SelectDate: [],
+          SelectTime: [],
             rating: {},
             UserId: this.props.match.params.UserID,
-            results: {}
+            results: {},
+            
          
         };
       }
@@ -49,24 +52,69 @@ class Profile extends Component {
               console.log("The error is "+error);
           });
       }
+
       
-      getKey(){
-       
+      getKey(e){
+        e.preventDefault();
         
+        const status = 'PENDING';
+        const Selectdate = this.state.SelectDate
+        const SlectTime = this.state.SelectTime;
+        const newtype = this.state.getword;
+        const Stylist_ID = this.state.UserId;
         
+        const Dates = moment();
+
+      
+            axios.post('http://localhost:3005/make_book', {
+            Status:status,
+            styID:Stylist_ID,
+            sTime:SlectTime,
+            sDate:Selectdate,
+            Date:Dates
+
+            
+            })
+            .then(function (response) {
+                console.log(response);
+
+                // this.updateState(response.data)
+
+            }.bind(this))
+
+            .catch(function (error) {
+                console.log("The error is "+error);
+            });
+
+         
+           
         }
 
 
 
 
-    render() {
+
+      getdate(date,time){
+        console.log(date,time)
+        this.setState({SelectDate:date})
+        this.setState({SelectTime:time})
       
+      }
+     
+
+
+
+
+    render() {
+      const user = localStorage.getItem( 'user');
       
       if (this.state.results.rows !== undefined)  
       var stylists = this.state.results.rows.map(name => {
+        console.log("Date date iss" ,this.state.SelectDate)
+        console.log("Timead date iss" ,this.state.SelectTime)
         return ( 
 
-<div key={205} className="cont"> 
+<div key={205} className="cont" ref="inputword"> 
 
     <div className="container">
         <div className="row">
@@ -114,12 +162,7 @@ class Profile extends Component {
         <br/>
             
             <div className="feedback panel-body table profile__table">
-           
-      
-        
-             
-             
-              
+         
                 <span className="badge badge-pill badge-secondary">{name.Skills}</span>
                 <span className="badge badge-pill badge-secondary">Success</span>
                 <span className="badge badge-pill badge-secondary">Danger</span>
@@ -185,7 +228,7 @@ class Profile extends Component {
        <br/>
        <div>
        <h4>Please Select Your Session </h4>
-         <Calender/>
+         <Calender getdate={this.getdate.bind(this)}/>
        </div>
 
         
@@ -228,7 +271,7 @@ class Profile extends Component {
         
         {/* <!-- Contact user --> */}
         <p>
-          <a href="./successfulPage" className="profile__contact-btn btn btn-lg btn-block btn-info" data-toggle="modal" data-target="#profile__contact-form">
+          <a href="./successfulPage" className="profile__contact-btn btn btn-lg btn-block btn-info" onClick={this.getKey.bind(this)} data-toggle="modal" data-target="#profile__contact-form">
             Book Now!
           </a>
         </p>
