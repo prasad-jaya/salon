@@ -132,12 +132,12 @@ router.post('/make_bookk',(req, res) => {
 
 //LOGIN
 router.post('/user_login',(req, res)  =>{
-    const email= req.body.Email
-    const pass = req.body.Password
+    const email= req.body.email
+    const pass = req.body.password
 
-    console.log(email)
+    console.log(email,"  dfdfd  ",pass)
 
-    const sqlq ="SELECT Email,Password FROM users WHERE Email=? AND Password=?"
+    const sqlq ="SELECT UserID,Email,Password FROM users WHERE Email=? AND Password=?"
     connection.query(sqlq,[email,pass],(err,rows,fields) =>{
         
         if(err){
@@ -151,7 +151,7 @@ router.post('/user_login',(req, res)  =>{
             res.end();
         }
 
-        console.log(rows)
+        console.log(rows[0].UserID)
         if(rows=='')
         {
             //IF USER PASSWORD OR EMAIL WRONG
@@ -160,6 +160,8 @@ router.post('/user_login',(req, res)  =>{
         if(rows!=''){
             //IF USER PASSWORD OR EMAIL CORRECT
             console.log("Its there")
+           
+           
         }
     })
 })

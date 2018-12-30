@@ -101,9 +101,18 @@ getKey(e){
    <div>
       
    <div className="cont">
-	<div className="col align-self-center">
-       
-    		<h2>Custom search field</h2>
+   
+   <div>
+  
+	<div className="container col align-self-center">
+    </div>
+    <div class="conte display-4 font-weight-bold">
+                <p>Get it done with a freelancer</p>
+                <h5>What type of work do you want done?</h5>
+    		</div>
+            <br/>
+            </div>
+            </div>
             <div id="custom-search-input">
                 <div className="input-group col-md">
                     <input type="text" className="form-control input-lg" placeholder="Search here.." onChange = {this.getinput} ref="inputword" />
@@ -112,11 +121,10 @@ getKey(e){
                         
                     
                 </div>
-               
-            </div>
+           
         
 	
-            </div>
+           
 
 </div>
 <Result resultsty={this.state.results}/>

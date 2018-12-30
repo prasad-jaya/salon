@@ -4,7 +4,7 @@ import './checkbooking.css';
 
 
 
-class checkbooking extends Component {
+class Checkbooking extends Component {
     
     constructor(props) {
         super(props);
@@ -26,15 +26,15 @@ class checkbooking extends Component {
     
     
     componentWillMount(){
-       
+      const UserID = localStorage.getItem('UserID')
       const ID = this.state.UserId;
       axios.post('http://localhost:3005/pending_booking', {
-      word:ID,
+      USERID:UserID,
         
         })
       .then(function (response) {
             
-            console.log("The error is ",response.data);
+            console.log("Booking deatils ",response.data);
             
             this.updateState(response.data)
             console.log("Data In result",response.data.rows)
@@ -47,53 +47,93 @@ class checkbooking extends Component {
     }
 
     
+    getRejectKey (ev)  {
+      
+      const UserID = localStorage.getItem('UserID')
+      
+      const Book_ID = ev;
     
+      console.log("Book_ID iss Im hereasas" + Book_ID)
+    
+          axios.post('http://localhost:3005/reject_booking', {
+          USERID:UserID,
+          BOODID:Book_ID,
+          
+          })
+          .then(function (response) {
+              console.log(response);
+
+             this.componentWillMount()
+
+          }.bind(this))
+
+          .catch(function (error) {
+              console.log("The error is "+error);
+          });
+
+         
+         
+      }
+
+
+      getConfirmKey (ev)  {
+      
+        const UserID = localStorage.getItem('UserID')
+        
+        const Book_ID = ev;
+      
+        console.log("Book_ID iss Im hereasas" + Book_ID)
+      
+            axios.post('http://localhost:3005/confirm_booking', {
+            USERID:UserID,
+            BOODID:Book_ID,
+            
+            })
+            .then(function (response) {
+                console.log(response);
+  
+               this.componentWillMount()
+  
+            }.bind(this))
+  
+            .catch(function (error) {
+                console.log("The error is "+error);
+            });
+  
+           
+           
+        }
+  
     
     render() { 
-        console.log("selected Data" ,this.state.results.rows)
+       
         if (this.state.results.rows !== undefined) 
         var Booking = this.state.results.rows.map(name => {
-            console.log("Date date iss" ,this.state.results.rows)
         
         return ( 
 
 
 
-<div key={22}>
-    <div className="nav">
-            
-    <ul className="nav nav-tabs" id="myTab" role="tablist">
-  <li class="nav-item">
-    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Booking</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Profile</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Contact</a>
-  </li>
-</ul>
-<div class="tab-content" id="myTabContent">
-  <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">...</div>
-  <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">...</div>
-  <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
-</div>
-</div>
+<div>
+<div key ={name.Book_ID} className="cont" >
 
-<div className="row">
+
+<div className="row" id="bookid" value={name.Book_ID}>
 <div class="col-md-9 offset-md-3">
 <div class="card  cardsize" >
   <div class="card-body">
     <h5 class="card-title">Card title</h5>
-    <p class="card-text">{name.Description}</p>
+    <p class="card-text">{name.Book_ID}</p>
     <div className ="btncls">
-    <a href="#" class="btn btn-outline-primary btn-sm">CONFIRM</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <a href="#" class="btn btn-outline-danger btn-sm ">REJECT</a>
+    <a href="#" class="btn btn-outline-primary btn-sm" onClick={() => {this.getConfirmKey(name.Book_ID)}}>CONFIRM</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="#" class="btn btn-outline-danger btn-sm " onClick={() => {this.getRejectKey(name.Book_ID)}}>REJECT</a>
     </div>
   </div>
 </div>
 </div>
 </div>
+</div>
+
 </div>
         );
     });
@@ -101,4 +141,4 @@ class checkbooking extends Component {
     }
 }
  
-export default checkbooking;
+export default Checkbooking;

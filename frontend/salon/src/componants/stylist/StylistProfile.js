@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import './Profile.css';
+import './StylistProfile.css';
 
 import StarRatings from 'react-star-ratings';
-import  Calender from './calender'
+
 import axios from 'axios';
 import moment from 'moment';
 
@@ -17,7 +17,7 @@ class Profile extends Component {
           SelectDate: [],
           SelectTime: [],
             rating: {},
-            UserId: this.props.match.params.UserID,
+            UserId: 15,
             results: {},
             
          
@@ -33,10 +33,11 @@ class Profile extends Component {
      
 
       componentWillMount(){
-          console.log("results come from Result", this.state.UserId); 
+        const UserID = localStorage.getItem('UserID')
+          console.log("results come from localstorage", UserID); 
         const ID = this.state.UserId;
-        axios.post('http://localhost:3005/get/stylist', {
-        word:ID,
+        axios.post('http://localhost:3005/stylist_load_profile', {
+        word:UserID,
           
           })
         .then(function (response) {
@@ -54,15 +55,44 @@ class Profile extends Component {
       }
 
       
-   
+      getKey(e){
+        e.preventDefault();
+        
+        const status = 'PENDING';
+        const Selectdate = this.state.SelectDate
+        const SlectTime = this.state.SelectTime;
+        const newtype = this.state.getword;
+        const Stylist_ID = this.state.UserId;
+        
+        const Dates = moment();
 
-        getinput = (event) => {
-
-         
-          localStorage.setItem('Description',event.target.value)
-         
-      }
       
+            axios.post('http://localhost:3005/make_book', {
+            Status:status,
+            styID:Stylist_ID,
+            sTime:SlectTime,
+            sDate:Selectdate,
+            Date:Dates
+
+            
+            })
+            .then(function (response) {
+                console.log(response);
+
+                // this.updateState(response.data)
+
+            }.bind(this))
+
+            .catch(function (error) {
+                console.log("The error is "+error);
+            });
+
+         
+           
+        }
+
+
+
 
 
       getdate(date,time){
@@ -72,24 +102,22 @@ class Profile extends Component {
       
       }
      
-      sendrate(){
-        this.props.getrate(this.state.Datacollection,this.state.TimeSlot);
-    }
+
 
 
 
     render() {
+        
       const user = localStorage.getItem( 'user');
-      
       if (this.state.results.rows !== undefined)  
       var stylists = this.state.results.rows.map(name => {
-        localStorage.setItem('Rate',name.Hr_Rate)
-        localStorage.setItem('StylistID',this.state.UserId)
-
+        
         console.log("Date date iss" ,this.state.SelectDate)
         console.log("Timead date iss" ,this.state.SelectTime)
         return ( 
+            <div className ="card  cardsizee">
 
+            <div class="card-body">
 <div key={205} className="cont" ref="inputword"> 
 
     <div className="container">
@@ -97,7 +125,7 @@ class Profile extends Component {
             {/* <!-- User profile --> */}
             <div className="col-xs-12 col-sm-9">
                 <div className="profile__avatar">
-                    <img src={require('../img/Layer3.png')} alt="PROFILE PIC"></img>
+                    <img src={require('../../img/Layer4.png')} alt="PROFILE PIC"></img>
                 </div>
        
                 <div className="panel panel-default">
@@ -106,6 +134,7 @@ class Profile extends Component {
                 <div className="panel-body">
            
                     <div className=" profile__header">
+                      
                         <h4>{name.FirstName} <small>{name.Role}</small></h4>
                         <p className="text-muted">
                         {name.Description}
@@ -202,140 +231,26 @@ class Profile extends Component {
         
         </div>
        <br/>
-
-<div>
-<h4>Job description </h4>
-<br/>
-<div class="input-group">
-  
-  <textarea class="form-control" aria-label="With textarea" onChange = {this.getinput} ref="inputword"></textarea>
-</div>
-</div>
-
-
-       <div className="workalin">
-       <h4>Please Select Your Session To Book Stylist </h4>
-         <Calender getdate={this.getdate.bind(this)}/>
-       </div>
-
+       
         
         
         
-        <div className="workalin panel-body row" >
-        <div className="col-8">
-        <h4>Required Hours </h4></div>
-        <div className="col-4"><h4>10Hr</h4></div>
-    
-        <br/>
-
-        <div className="col-8">
-        <h5>Stylist Hourly Rate </h5></div>
-        <div className="col-4"><h5>$20 Hr</h5></div>
-
-        <br/>
-
-        <div className="col-8">
-        <h5>Service Charge </h5></div>
-        <div className="col-4"><h5>20%</h5></div>
-        
-        <br/>
-
-        <hr className="style14"></hr>
-        <div className="col-8">
-        <h4>Total Amount </h4></div>
-        <div className="col-4"><h4>$220</h4></div>
-
-        <br/>
-        <br/>
-
-
-        </div>
         
             
 
       </div>
-      <div className="col-xs-12 col-sm-3">
-        
-        {/* <!-- Contact user --> */}
-        <p>
-          <button data-toggle="modal" data-target="#exampleModalCenter" href="./successfulPage" className="profile__contact-btn btn btn-lg btn-block btn-info">
-            Book Now!
-          </button>
-        </p>
-
-        <hr className="profile__contact-hr"></hr>
-        
-        {/* <!-- Contact info --> */}
-        <div className="profile__contact-info">
-          <div className="profile__contact-info-item">
-            <div className="profile__contact-info-icon">
-              <i className="fa fa-phone"></i>
-            </div>
-            <div className="profile__contact-info-body">
-              <h5 className="profile__contact-info-heading">Location</h5>
-              {name.Location}
-            </div>
-          </div>
-          <div className="profile__contact-info-item">
-            <div className="profile__contact-info-icon">
-              <i className="fa fa-phone"></i>
-            </div>
-            <div className="profile__contact-info-body">
-              <h5 className="profile__contact-info-heading">Mobile number</h5>
-              (000)987-65-43
-            </div>
-          </div>
-          <div className="profile__contact-info-item">
-            <div className="profile__contact-info-icon">
-              <i className="fa fa-envelope-square"></i>
-            </div>
-            <div className="profile__contact-info-body">
-              <h5 className="profile__contact-info-heading">E-mail address</h5>
-              <a href="mailto:admin@domain.com">admin@domain.com</a>
-            </div>
-          </div>
-          <div className="profile__contact-info-item">
-            <div className="profile__contact-info-icon">
-              <i className="fa fa-map-marker"></i>
-            </div>
-            <div className="profile__contact-info-body">
-              <h5 className="profile__contact-info-heading">Work address</h5>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-            </div>
-          </div>
-        </div>
-
-       
-     
-    </div>
+    
 </div>
            
             </div>
-
-            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
+            </div>
+            </div>
             </div>
          );
+       
         });
-      
         return <div >{stylists}</div>;
+      
     }
 }
  

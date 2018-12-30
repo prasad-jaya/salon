@@ -1,0 +1,68 @@
+.weekday{
+   display: flex ;
+   flex: 100%;
+  
+}
+
+.weekday1{
+  display: flex ;
+  flex: 100%;
+  
+}
+
+
+
+
+.square {
+    
+    height: 60px;
+    width: 60px;
+    background-color: #555;
+    border-radius: 20%;
+    display: flex;
+    
+    
+  }
+
+  
+
+  .divspace2{
+      padding-top: 10px;
+      padding-left: 30px;
+      padding-right: 30px;
+      cursor: pointer;
+  }
+
+  .square2 {
+    
+    height: 60px;
+    width: 60px;
+    background-color:coral;
+    border-radius: 100%;
+    display: flex;
+    
+    
+  }
+
+  .divspace{
+    padding-top: 10px;
+    padding-left: 0px;
+    padding-right: 48px;
+    cursor: pointer;
+    display: inline ;
+}
+
+.Evening{
+  margin-left: 44px !important;
+  margin-top: 5px;
+}
+
+.Evening2{
+  
+  margin-top: 15px;
+}
+
+.centt{
+  margin-top: 20px;
+  margin-left: 70px;
+}

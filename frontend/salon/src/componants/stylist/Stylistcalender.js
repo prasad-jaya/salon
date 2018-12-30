@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import moment from 'moment';
-import './calender.css';
-import Profile from './Profile';
-import { Route } from "react-router-dom";
-import axios from 'axios';
-import { Link } from "react-router-dom";
+import './Stylistcalender.css';
+
+
 
 
 
@@ -39,35 +37,21 @@ class Calender extends Component {
         clickstateEvning7: false,
 
         Datacollection : [],
-        TimeSlot : [],
-
-        Rate:0,
-        Description:[],
-        Amount:0
-
+        TimeSlot : []
         
         
     }
 
-    this.senddate = this.senddate.bind(this)
+    // this.senddate = this.senddate.bind(this)
 }
 
 
 
     weekdaysShort = moment.weekdaysShort();
-
-
     
 //Morning Time Slot Handle Fuction
     onMorningClick = (e, day,id) =>{
-        const rate = localStorage.getItem('Rate')
-        const description = localStorage.getItem('Description')
-        this.setState({Rate:rate})
-        this.setState({Description:description})
-
-     
-        this.setState({ Amount:rate*4})
-  
+        alert("You Clicked Morning Slot On "+ day);
        
        
 
@@ -266,10 +250,10 @@ class Calender extends Component {
             this.setState({clickstate:true})
             console.log(this.state.clickstate)
 
-            let senddate = this.senddate
-            setTimeout(function(){
-                senddate()
-            },2000)
+            // let senddate = this.senddate
+            // setTimeout(function(){
+            //     senddate()
+            // },2000)
 
             return(<div key={day}></div>)
             
@@ -280,17 +264,7 @@ class Calender extends Component {
 //Evening Time Slot Handle Fuction
     onEveningClick = (e, day,id) =>{
         // alert("You Clicked Evening Slot On "+ day);
-        const rate = localStorage.getItem('Rate')
-        const description = localStorage.getItem('Description')
-        this.setState({Rate:rate})
-        this.setState({Description:description})
-
-     
-        this.setState({ Amount:rate*4})
-
-       
-            
-
+        
         if(this.state.clickstateEvning1 === false && id===1){
             this.setState({clickstateEvning1:true}) 
             var newArray = this.state.Datacollection.slice();
@@ -458,65 +432,22 @@ class Calender extends Component {
              this.setState({TimeSlot: array2}); 
             }
     
-            let senddate = this.senddate
-            setTimeout(function(){
-                senddate()
-
-            },2000)
-
-
-         
-            console.log("Amount is" , this.state.Amount)
+            // let senddate = this.senddate
+            // setTimeout(function(){
+            //     senddate()
+            // },2000)
             
 
     }
 
 
-    senddate(){
-        this.props.getdate(this.state.Datacollection,this.state.TimeSlot);
-    }
-    getKey(e){
-        e.preventDefault();
-
-            const UserID = localStorage.getItem('UserID')
-            const styIDd = localStorage.getItem('StylistID')
-            const Des = localStorage.getItem('Description')
-            const Sdate = this.state.Datacollection
-            const sTimee = this.state.TimeSlot
-
-            axios.post('http://localhost:3005/make_book', {
-                styID:styIDd,
-                sDate:Sdate,
-                sTime:sTimee,
-                sOwnerID:UserID,
-                Description:Des
-            
-            })
-            .then(function (response) {
-                console.log(response);
-
-               
-            }.bind(this))
-
-            .catch(function (error) {
-                console.log("The error is "+error);
-            });
-
-           
-           
-        }
-        routeChange(){
-            let path = `/search`;
-            
-            }
-
-  
+    // senddate(){
+    //     this.props.getdate(this.state.Datacollection,this.state.TimeSlot);
+    // }
   
     render() { 
 
-        console.log("Amount is" , this.state.Amount)
-        console.log("Amount is" , this.state.Rate)
-        console.log("Amount is" , this.state.Description)
+        
        
         const checkstate1 = this.state.clickstate1;
         const checkstate2 = this.state.clickstate2;
@@ -653,7 +584,7 @@ class Calender extends Component {
 
        
        
-     
+       
       
         
         
@@ -675,7 +606,7 @@ class Calender extends Component {
 
             if(i===1){
                 slots1.push(<div key={i} className="col-md-1 Evening" id={i}>
-                <div data-toggle="modal" data-target="#exampleModalCenter" onClick={(e) =>{this.onMorningClick(e,dateformat,i)}} >{divv1}</div> 
+                <div onClick={(e) =>{this.onMorningClick(e,dateformat,i)}} >{divv1}</div> 
                 </div>)
 
                 slotsEve1.push(<div key={i} className="col-md-1 Evening">
@@ -757,6 +688,7 @@ class Calender extends Component {
 
         return (
             <React.Fragment>
+                <div className = "centt">
           <div className="row">
           <div className="col-md-11 offset-md-1"><div className="weekday1">{n7days}</div></div>
           </div>
@@ -767,57 +699,9 @@ class Calender extends Component {
          
          <div className="col-md-1 Evening2">Evening</div><div className="col-md-11"><div className="weekday">{slotsEve1}</div></div>
           
-
-         
           </div>
          
-        
-          <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-       
-
-        <br/>
-
-        <div className="row">
-        <div className="col-8">
-        <h6>Stylist Hourly Rate </h6></div>
-        <div className="col-4"><h5> {this.state.Rate}Hr </h5></div>
-        </div>
-
-      
-        <div className="row">
-        <div className="col-8">
-        <h5>Service Charge </h5></div>
-        <div className="col-4"><h5>20%</h5></div>
-        </div>
-
-       
-        <div className="row">
-        <hr className="style14"></hr>
-        <div className="col-8">
-        <h4>Total Amount </h4></div>
-        <div className="col-4"><h4>{this.state.Amount}</h4></div>
-        </div>
-      </div>
-
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <Link to="/">
-        <button type="button" class="btn btn-primary" onClick={this.getKey.bind(this)}  onClick={this.routeChange}>Save changes</button>
-        </Link>
-      </div>
-    </div>
-  </div>
-</div>
-      
+          </div>
           
           </React.Fragment>
 

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./Login.css";
+import axios from 'axios';
 import {
   BrowserRouter as Router,
   Route,
@@ -8,39 +9,65 @@ import {
   withRouter
 } from "react-router-dom";
 
-const fakeAuth = {
-  isAuthenticated: false,
-  authenticate(cb) {
-    this.isAuthenticated = true;
-    setTimeout(cb, 100); // fake async
-  },
-  signout(cb) {
-    this.isAuthenticated = false;
-    setTimeout(cb, 100);
-  }
-};
-
-//CONTENT ON PAGE
-const Public = () => <h3>Public</h3>;
-const Protected = () => <h3>Protected</h3>;
-
-class log extends Component {
+class LogInn extends Component {
   state = {
-    redirectToReferrer: false
+    redirectToReferrer: false,
+    User_ID:{}
   };
-  login = () => {
-    fakeAuth.authenticate(() => {
-      this.setState(() => ({
-        redirectToReferrer: true
-      }));
-    });
-  };
-  render() {
-    const { redirectToReferrer } = this.state;
-    const { from } = this.props.location.state || {
-      from: { pathname: "/login" }
-    };
 
+  updateState(value) {
+    this.setState({
+      User_ID: value
+    });
+   
+  }
+  getKey(e){
+    e.preventDefault();
+    
+    const emaill = this.refs.email.value
+    const passwordd = this.refs.password.value
+    
+    console.log("Email " + emaill )
+    console.log("Email " + passwordd )
+    
+       
+       
+        //const update = this.props;
+
+        axios.post('http://localhost:3005/user_login', {
+        email:emaill,
+        password:passwordd,
+        
+        })
+        .then(function (response) {
+            console.log(response);
+
+            this.updateState(response.data[0].UserID)
+
+        }.bind(this))
+
+        .catch(function (error) {
+            console.log("The error is "+error);
+        });
+
+       
+       
+    }
+
+   
+
+
+  render() {
+   
+    const dataa = this.state.User_ID;
+    console.log("User_ID " , dataa)
+
+    localStorage.setItem('UserID',dataa)
+
+    const { redirectToReferrer } = this.state;
+    const { from } = this.props.location.state || { from: { pathname: "/" }
+    };
+   
     if (redirectToReferrer === true) {
       return <Redirect to={from} />;
     }
@@ -49,50 +76,51 @@ class log extends Component {
       <div className="sizee">
         {/* <button onClick={this.login}>Log IN</button> */}
 
-        <div class="card justify-content-center border-secondary text-center">
-          <div class="card-header">
+        <div className="card justify-content-center border-secondary text-center">
+          <div className="card-header">
             <p>You must log in to view this page at {from.pathname}</p>
             <h2>
               <strong>LogIn</strong>
             </h2>
           </div>
-          <div class="card-body">
+          <div className="card-body">
             <form>
-              <div class="form-group">
+              <div className="form-group">
                 <input
                   type="email"
-                  class="form-control"
+                  className="form-control"
                   id="exampleInputEmail1"
                   aria-describedby="emailHelp"
                   placeholder="Enter email"
+                  ref="email"
                 />
-                <small id="emailHelp" class="form-text text-muted">
+                <small id="emailHelp" className="form-text text-muted">
                   We'll never share your email with anyone else.
                 </small>
               </div>
-              <div class="form-group">
+              <div className="form-group">
                 <input
                   type="password"
-                  class="form-control"
+                  className="form-control"
                   id="exampleInputPassword1"
                   placeholder="Password"
+                  ref="password"
                 />
               </div>
-              <div class="form-check">
+              <div className="form-check">
                 <input
                   type="checkbox"
-                  class="form-check-input"
+                  className="form-check-input"
                   id="exampleCheck1"
                 />
-                <label class="form-check-label" for="exampleCheck1">
-                  Check me out
-                </label>
+               
               </div>
               <br />
             </form>
             <button
               onClick={this.login}
-              class="btn btn-secondary btn-lg btn-block"
+              className="btn btn-secondary btn-lg btn-block"
+              onClick={this.getKey.bind(this)}
             >
               LOGIN
             </button>
@@ -103,66 +131,4 @@ class log extends Component {
   }
 }
 
-const PrivateRoute = ({ component: Component, ...rest }) => (
-  <Route
-    {...rest}
-    render={props =>
-      fakeAuth.isAuthenticated === true ? (
-        <Component {...props} />
-      ) : (
-        <Redirect
-          to={{
-            pathname: "/log",
-            state: { from: props.location }
-          }}
-        />
-      )
-    }
-  />
-);
-
-const AuthButton = withRouter(({ history }) =>
-  fakeAuth.isAuthenticated === true ? (
-    <p>
-      Welcome!{" "}
-      <button
-        onClick={() => {
-          fakeAuth.signout(() => history.push("/"));
-        }}
-      >
-        Signout
-      </button>
-    </p>
-  ) : (
-    <p>You are not Logged in</p>
-  )
-);
-
-class LogIn extends Component {
-  state = {};
-  render() {
-    return (
-      <div>
-        <Router>
-          <div>
-            <AuthButton />
-            <ul>
-              <li>
-                <Link to="/public"> public page</Link>
-              </li>
-              <li>
-                <Link to="/protected"> protected page</Link>
-              </li>
-            </ul>
-
-            <Route path="/public" component={Public} />
-            <Route path="/log" component={log} />
-            <PrivateRoute path="/protected" component={Protected} />
-          </div>
-        </Router>
-      </div>
-    );
-  }
-}
-
-export default LogIn;
+export default LogInn;

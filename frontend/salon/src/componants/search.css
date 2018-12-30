@@ -32,7 +32,52 @@
 
 .cont {
   
-    margin-top: 8%;
+    margin-top: 10%;
     
 
+}
+
+.container2 .content {
+      
+  margin-left: -3%;
+position: absolute; /* Position the background text */
+margin-top: 0px; /* At the bottom. Use top:0 to append it to the top */
+text-align: center;
+color: #f1f1f1; /* Grey text */
+width: 100%; /* Full width */
+padding: 20px; /* Some padding */
+}
+
+.conte{
+  text-align: center;
+ margin-top: 20px !important;
+ margin-left: 5%;
+}
+
+#bg {
+  position: fixed; 
+  top: 0%; 
+  left: 0%; 
+  width: 100%; 
+  height: 100%;
+  background-color: SlateGray;
+  position:relative;
+  width: 100%;
+  height: 100%;
+  opacity: 0.20;
+  -moz-opacity: 20%;
+  -webkit-opacity: 20%;
+  z-index: 2;
+}
+
+
+#bg img {
+  position: absolute; 
+  top: 0; 
+  left: 0; 
+  right: 0; 
+  bottom: 0; 
+  margin: auto; 
+  min-width: 50%;
+  min-height: 50%;
 }

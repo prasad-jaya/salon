@@ -72,6 +72,85 @@ sty.post('/get/stylist',(req,res)=>{
 })
 
 
+sty.post('/stylist_load_profile',(req,res)=>{
+
+    
+    const ID = req.body.word
+    console.log("addddooo",ID);
+
+    if(ID==''){
+        console.log("huuuuIIII");
+        res.json({msg:true,rows})
+    }
+    
+    const sqlq ="SELECT FirstName,Email,Location,Role,Description,Stars,Skills,Hr_Rate FROM stylist WHERE StylistID = '"+ID+"'"
+    connection.query(sqlq,(err,rows,fields) =>{
+        
+        if(err){
+            console.log("Failed in Query "+err)
+            res.sendStatus(404)
+            return
+        }
+        else{
+            console.log("Susscessfully Executed")
+            res.json({msg:true,rows})
+        }
+    })
+    
+    
+    
+})
+
+
+sty.post('/updateprofile',(req,res)=>{
+
+    
+    const ID = req.body.USERID
+    const FirstName = req.body.FName
+    const city = req.body.City
+    const des = req.body.Description
+    const skill = req.body.Skill
+    const Rate = req.body.rate
+    console.log("addddooo",ID);
+
+    if(ID==''){
+        console.log("huuuuIIII");
+        res.json({msg:true,rows})
+    }
+    
+    const sqlq ="UPDATE stylist SET FirstName = ?,Email = 'halo@dfg', Location = ?, Role = 'Stylist' ,Description = ?,Skills = ?,Hr_Rate = ? WHERE StylistID = '"+ID+"'"
+    connection.query(sqlq,[FirstName,city,des,skill,Rate] ,(err,rows,fields) =>{
+        
+        if(err){
+            console.log("Failed in Query "+err)
+            res.sendStatus(404)
+            return
+        }
+        else{
+            console.log("Susscessfully Executed")
+            const sqlq ="SELECT FirstName,Email,Location,Role,Description,Stars,Skills,Hr_Rate FROM stylist WHERE StylistID = '"+ID+"'"
+            connection.query(sqlq,(err,rowss,fields) =>{
+        
+            if(err){
+                console.log("Failed in Query "+err)
+                res.sendStatus(404)
+                return
+            }
+            else{
+                console.log("Susscessfully Executed")
+                res.json({msg:true,rowss})
+            }
+        })
+       
+           
+        }
+    })
+    
+    
+    
+})
+
+
 
 
 module.exports = sty

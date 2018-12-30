@@ -4,9 +4,10 @@ import Search from "./componants/search";
 import Profile from "./componants/Profile";
 import Home from "./componants/Home";
 import Calender from "./componants/calender";
-import LogIn from "./componants/Login";
+import LogInn from "./componants/Login";
 import Navbar from "./componants/navbar";
 import checkbooking from "./componants/stylist/checkbooking"
+import stylistHome from "./componants/stylist/StylistHome"
 
 import {
   BrowserRouter as Router,
@@ -14,6 +15,8 @@ import {
   Redirect,
   withRouter
 } from "react-router-dom";
+import updateprofiel from "./componants/stylist/Updateprofile";
+import Footer from "./componants/footer";
 
 
 let isAuthenticatedd =false
@@ -33,7 +36,7 @@ const fakeAuth = {
   }
 };
 
-const PrivateRoute = ({ component: Component, ...rest }) => (
+const PrivateRoute = ({ component: Component, ...rest }) => (        
   <Route {...rest} render={(props) =>(
         fakeAuth.isAuthenticated ===true
         ? <Component {...props} />
@@ -180,22 +183,26 @@ class Layout extends Component {
     console.log("Log status :",this.state.LogStatus)
     return (
       <div>
+        <Navbar authenticate={this.state.LogStatus}/>
          <Route path="/" component={Navbar} /> />
         <AuthButton/>
         <Switch>
           <Route exact strict path="/" component={Home} />
           <Route exact strict path="/search" component={Search} />
-          <Route exact strict path="/checkbookings" component={checkbooking} />
+          <Route exact strict path="/stylistHome/checkbookings" component={checkbooking} />
+          <Route exact strict path="/stylistHome" component={stylistHome} />
+           <Route exact strict path="/updateprofile" component={updateprofiel} />
           {/* <Route exact strict path="/Profile/:UserID"  component={Profile}/> */}
           <Route path="/login" component={login} />
           {/* <Route path="/log" render={()=>{return <Log authenticate={this.authenticate.bind(this)}/>}}/> */}
           <Calender exact strict path="/calender" component={Calender} />
-          <Route exact strict path="/login" component={LogIn} />
+          <Route exact strict path="/loginn" component={LogInn} />
           
           <PrivateRoute exact strict path="/Profile/:UserID" component={Profile} />
           <div className="container" />
         </Switch>
-        <Navbar authenticate={this.state.LogStatus}/>
+       
+       
       </div>
     );
   }

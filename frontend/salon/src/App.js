@@ -3,6 +3,7 @@ import "./App.css";
 import Navbar from "./componants/navbar";
 import {BrowserRouter, Route , Switch} from "react-router-dom"
 import Layout from "./Layout";
+import Footer from "./componants/footer";
 
 class App extends Component {
  
@@ -18,7 +19,7 @@ class App extends Component {
         {/* <div className="App"> */}
          
          <Layout/>
-
+         <Footer></Footer>
         {/* </div>
       </div> */}
       </Switch>
