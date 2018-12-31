@@ -10,7 +10,7 @@ import {
 } from "react-router-dom";
 import { link } from "fs";
 
-class LogInn extends Component {
+class SignupMain extends Component {
   state = {
     redirectToReferrer: false,
     User_ID:{}
@@ -22,49 +22,60 @@ class LogInn extends Component {
     });
    
   }
-  getKey(e){
+  getcreateuser(e){
     e.preventDefault();
-    
     const emaill = this.refs.email.value
     const passwordd = this.refs.password.value
-    
-    console.log("Email " + emaill )
-    console.log("Email " + passwordd )
-    
-       
-       
-        //const update = this.props;
 
-        axios.post('http://localhost:3005/user_login', {
+    
+
+    if (document.getElementById('customRadio1').checked) {
+      var stylist = document.getElementById('customRadio1').value;
+      console.log("stylist " + stylist )
+    
+    
+      axios.post('http://localhost:3005/create_new_stylist', {
         email:emaill,
         password:passwordd,
+        role:'Stylist'
         
         })
         .then(function (response) {
-            console.log(response);
-            localStorage.setItem('isAuthenticated', true);
-            this.updateState(response.data[0].UserID);
+          this.props.history.push({pathname:'/signup',data:response.data})  
+          console.log(response);
+          
+            
            
-            this.props.history.push({pathname:'/stylistHome',data:response.data[0].UserID})
+           
            
             
 
         }.bind(this))
 
         .catch(function (error) {
-          localStorage.setItem('isAuthenticated', false);
+          
             console.log("The error is "+error);
         });
+    
+    
+    }
 
-       
+    if (document.getElementById('customRadio2').checked) {
+      var owner = document.getElementById('customRadio2').value;
+      console.log("owner " + owner )
+    
+    }       
        
     }
 
+  
+   
    
 
 
   render() {
-   
+    
+
     const dataa = this.state.User_ID;
     console.log("User_ID " , dataa)
 
@@ -84,9 +95,9 @@ class LogInn extends Component {
 
         <div className="card justify-content-center border-secondary text-center">
           <div className="card-header">
-            <p>You must log in to view this page at {from.pathname}</p>
+            
             <h2>
-              <strong>LogIn</strong>
+              <strong>Sign up</strong>
             </h2>
           </div>
           <div className="card-body">
@@ -114,15 +125,32 @@ class LogInn extends Component {
                 />
               </div>
              
-              <br />
+             
+
+            
+              <hr/>
+              <div className="row col-md-7">
+              
+              <div class="custom-control custom-radio">
+                <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input"></input>
+                <label class="custom-control-label" for="customRadio1">I'm Stylist</label>
+              </div >
+              
+              <div class="custom-control custom-radio">
+                <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input"></input>
+                <label class="custom-control-label" for="customRadio2">I'm Salon Owner</label>
+              </div>
+              </div>
+              <hr/>
+
             </form>
             <button
               onClick={this.login}
               className="btn btn-secondary btn-lg btn-block"
-              onClick={this.getKey.bind(this)}
+              onClick={this.getcreateuser.bind(this)}
               
             >
-              LOGIN
+              SIGN UP
             </button>
           </div>
         </div>
@@ -131,4 +159,4 @@ class LogInn extends Component {
   }
 }
 
-export default LogInn;
+export default SignupMain;

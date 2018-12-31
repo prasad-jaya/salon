@@ -10,9 +10,16 @@ class Result extends Component {
 
 
   state = {};
+
+
+  componentWillMount(){
+  
+  }
+
+
   render() {
-    console.log("results come from backend", this.props.resultsty.rows);
-    
+   
+   
     
     
     
@@ -21,9 +28,9 @@ class Result extends Component {
       var stylists = this.props.resultsty.rows.map(name => {
         return (
      
-        <div key={name.UserID} className="con">
+        <div key={name.StylistID} className="con">
         
-    <Link  key={name.UserID} to={{ pathname: "/Profile/"+name.UserID, data: name.UserID }}>
+    <Link  key={name.StylistID} to={{ pathname: "/Profile/"+name.StylistID, data: name.StylistID }}>
     {/* <Layout resultsty={name.UserID }></Layout> */}
 	   
      

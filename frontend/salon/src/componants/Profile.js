@@ -89,7 +89,9 @@ class Profile extends Component {
         console.log("Date date iss" ,this.state.SelectDate)
         console.log("Timead date iss" ,this.state.SelectTime)
         return ( 
+          
 
+          <div class="card-body">
 <div key={205} className="cont" ref="inputword"> 
 
     <div className="container">
@@ -140,9 +142,7 @@ class Profile extends Component {
             <div className="feedback panel-body table profile__table">
          
                 <span className="badge badge-pill badge-secondary">{name.Skills}</span>
-                <span className="badge badge-pill badge-secondary">Success</span>
-                <span className="badge badge-pill badge-secondary">Danger</span>
-                <span className="badge badge-pill badge-secondary">Warning</span>
+               
               
       
          </div>
@@ -176,7 +176,7 @@ class Profile extends Component {
 
               <hr className="style14"></hr>
 
-              <h5>Richard Roe </h5>
+              <h5>Sarah Teare </h5>
               <p className="text-muted blockquote-footer">
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non nostrum odio cum repellat veniam eligendi rem cumque magnam autem delectus qui.
               </p>
@@ -221,93 +221,14 @@ class Profile extends Component {
         
         
         
-        <div className="workalin panel-body row" >
-        <div className="col-8">
-        <h4>Required Hours </h4></div>
-        <div className="col-4"><h4>10Hr</h4></div>
-    
-        <br/>
-
-        <div className="col-8">
-        <h5>Stylist Hourly Rate </h5></div>
-        <div className="col-4"><h5>$20 Hr</h5></div>
-
-        <br/>
-
-        <div className="col-8">
-        <h5>Service Charge </h5></div>
-        <div className="col-4"><h5>20%</h5></div>
         
-        <br/>
 
-        <hr className="style14"></hr>
-        <div className="col-8">
-        <h4>Total Amount </h4></div>
-        <div className="col-4"><h4>$220</h4></div>
-
-        <br/>
-        <br/>
-
-
-        </div>
+       
         
             
 
       </div>
-      <div className="col-xs-12 col-sm-3">
-        
-        {/* <!-- Contact user --> */}
-        <p>
-          <button data-toggle="modal" data-target="#exampleModalCenter" href="./successfulPage" className="profile__contact-btn btn btn-lg btn-block btn-info">
-            Book Now!
-          </button>
-        </p>
-
-        <hr className="profile__contact-hr"></hr>
-        
-        {/* <!-- Contact info --> */}
-        <div className="profile__contact-info">
-          <div className="profile__contact-info-item">
-            <div className="profile__contact-info-icon">
-              <i className="fa fa-phone"></i>
-            </div>
-            <div className="profile__contact-info-body">
-              <h5 className="profile__contact-info-heading">Location</h5>
-              {name.Location}
-            </div>
-          </div>
-          <div className="profile__contact-info-item">
-            <div className="profile__contact-info-icon">
-              <i className="fa fa-phone"></i>
-            </div>
-            <div className="profile__contact-info-body">
-              <h5 className="profile__contact-info-heading">Mobile number</h5>
-              (000)987-65-43
-            </div>
-          </div>
-          <div className="profile__contact-info-item">
-            <div className="profile__contact-info-icon">
-              <i className="fa fa-envelope-square"></i>
-            </div>
-            <div className="profile__contact-info-body">
-              <h5 className="profile__contact-info-heading">E-mail address</h5>
-              <a href="mailto:admin@domain.com">admin@domain.com</a>
-            </div>
-          </div>
-          <div className="profile__contact-info-item">
-            <div className="profile__contact-info-icon">
-              <i className="fa fa-map-marker"></i>
-            </div>
-            <div className="profile__contact-info-body">
-              <h5 className="profile__contact-info-heading">Work address</h5>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-            </div>
-          </div>
-        </div>
-
-       
      
-    </div>
 </div>
            
             </div>
@@ -316,7 +237,7 @@ class Profile extends Component {
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+        <h5 class="modal-title" id="exampleModalLongTitle">Book Your Stylist</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -332,6 +253,8 @@ class Profile extends Component {
   </div>
 </div>
             </div>
+            </div>
+           
          );
         });
       

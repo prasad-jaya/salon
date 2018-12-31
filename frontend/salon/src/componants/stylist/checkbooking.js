@@ -122,8 +122,9 @@ class Checkbooking extends Component {
 <div class="col-md-9 offset-md-3">
 <div class="card  cardsize" >
   <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">{name.Book_ID}</p>
+    <h5 class="card-title">Booking</h5>
+    <p class="card-text">{name.Book_Date}</p>
+    <p class="card-text">{name.Description}</p>
     <div className ="btncls">
     <a href="#" class="btn btn-outline-primary btn-sm" onClick={() => {this.getConfirmKey(name.Book_ID)}}>CONFIRM</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <a href="#" class="btn btn-outline-danger btn-sm " onClick={() => {this.getRejectKey(name.Book_ID)}}>REJECT</a>

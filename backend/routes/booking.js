@@ -14,7 +14,7 @@ const connection = require('../DBconnect')
 
 
 
-
+//MAKE BOOK
 booking.post('/make_book',(req, res) => {
     
     console.log("Last Nane:" + req.body.name)
@@ -40,7 +40,7 @@ booking.post('/make_book',(req, res) => {
     })
 })
 
-
+//CHECK PENDING BOOKING
 booking.post('/pending_booking',(req, res) => {
     
     console.log("Last Nane:" + req.body.name)

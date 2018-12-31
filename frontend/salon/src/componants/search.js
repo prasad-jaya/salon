@@ -38,7 +38,7 @@ newget(){
         
         })
         .then(function (response) {
-            console.log(response);
+            console.log("thissssssss",response);
 
             this.updateState(response.data)
 
@@ -103,7 +103,7 @@ getKey(e){
    <div className="cont">
    
    <div>
-  
+   <img src={require('../img/Search.jpg')} id="bg" alt=""></img> 
 	<div className="container col align-self-center">
     </div>
     <div class="conte display-4 font-weight-bold">
@@ -113,7 +113,7 @@ getKey(e){
             <br/>
             </div>
             </div>
-            <div id="custom-search-input">
+            <div id="container custom-search-input">
                 <div className="input-group col-md">
                     <input type="text" className="form-control input-lg" placeholder="Search here.." onChange = {this.getinput} ref="inputword" />
                    

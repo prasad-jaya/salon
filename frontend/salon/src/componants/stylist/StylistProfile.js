@@ -115,7 +115,7 @@ class Profile extends Component {
         console.log("Date date iss" ,this.state.SelectDate)
         console.log("Timead date iss" ,this.state.SelectTime)
         return ( 
-            <div className ="card  cardsizee">
+            <div className ="card  cardsizel">
 
             <div class="card-body">
 <div key={205} className="cont" ref="inputword"> 

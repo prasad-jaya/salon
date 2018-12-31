@@ -17,6 +17,8 @@ import {
 } from "react-router-dom";
 import updateprofiel from "./componants/stylist/Updateprofile";
 import Footer from "./componants/footer";
+import Signup from "./componants/signup"
+import SignupMain from "./componants/SignupMain";
 
 
 let isAuthenticatedd =false
@@ -188,6 +190,8 @@ class Layout extends Component {
         <AuthButton/>
         <Switch>
           <Route exact strict path="/" component={Home} />
+          <Route exact strict path="/signup" component={Signup} />
+          <Route exact strict path="/signupfirst" component={SignupMain} />
           <Route exact strict path="/search" component={Search} />
           <Route exact strict path="/stylistHome/checkbookings" component={checkbooking} />
           <Route exact strict path="/stylistHome" component={stylistHome} />

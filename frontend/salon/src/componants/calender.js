@@ -788,15 +788,30 @@ class Calender extends Component {
 
         <div className="row">
         <div className="col-8">
-        <h6>Stylist Hourly Rate </h6></div>
+        <h6>Selected Date </h6></div>
+        <div className="col-4"><h6> {this.state.Datacollection} </h6></div>
+        </div>
+
+        <div className="row">
+        <div className="col-8">
+        <h6>Selected Session </h6></div>
+        <div className="col-4"><h6> Morning (4 Hours) </h6></div>
+        </div>
+
+
+
+
+        <div className="row">
+        <div className="col-8">
+        <h5>Stylist Hourly Rate </h5></div>
         <div className="col-4"><h5> {this.state.Rate}Hr </h5></div>
         </div>
 
       
         <div className="row">
         <div className="col-8">
-        <h5>Service Charge </h5></div>
-        <div className="col-4"><h5>20%</h5></div>
+        <h6>Service Charge </h6></div>
+        <div className="col-4"><h6>20%</h6></div>
         </div>
 
        
@@ -804,14 +819,14 @@ class Calender extends Component {
         <hr className="style14"></hr>
         <div className="col-8">
         <h4>Total Amount </h4></div>
-        <div className="col-4"><h4>{this.state.Amount}</h4></div>
+        <div className="col-4"><h4>{this.state.Amount + ((this.state.Amount*20)/100)}</h4></div>
         </div>
       </div>
 
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <Link to="/">
-        <button type="button" class="btn btn-primary" onClick={this.getKey.bind(this)}  onClick={this.routeChange}>Save changes</button>
+        <button type="button" class="btn btn-primary" onClick={this.getKey.bind(this)}  onClick={this.routeChange}>Book Now</button>
         </Link>
       </div>
     </div>

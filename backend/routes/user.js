@@ -28,7 +28,7 @@ router.post('/get',(req,res)=>{
         res.json({msg:true,rows})
     }
     
-    const sqlq ="SELECT UserID,FirstName,Email,Password FROM users WHERE FirstName LIKE '"+typeword+"%'"
+    const sqlq ="SELECT StylistID,FirstName,Description,Hr_Rate,Role FROM stylist WHERE Skills LIKE '"+typeword+"%'"
     connection.query(sqlq,(err,rows,fields) =>{
         
         if(err){
@@ -90,8 +90,8 @@ router.post('/user_create',(req, res) => {
     const email = req.body.create_Email
     const pass = req.body.create_Password
 
-    const querysrting ="Insert Into users (FirstName,LastName,Email,Password) values (?,?,?,?)"
-    connection.query(querysrting, [fname,lname,email,pass], (err,results,fields) =>{
+    const querysrting ="Insert Into users (FirstName,Email,Password,Role) values (?,?,?,'Stylist')"
+    connection.query(querysrting, [fname,email,pass,], (err,results,fields) =>{
         if(err){
             console.log("Faild to insert" + err)
             res.sendStatus(500)
@@ -185,7 +185,28 @@ router.get("/", (req, res) =>{
 })
 
 
+router.post('/create_new_stylist',(req, res) => {
+    
+    console.log("Last Nane:" + req.body.name)
 
+    const Email = req.body.email
+    const Pass = req.body.password
+    const Role = req.body.role
+    
+
+    const querysrting ="Insert Into users (Email,Password,Role) values (?,?,?)"
+    connection.query(querysrting, [Email,Pass,Role,], (err,results,fields) =>{
+        if(err){
+            console.log("Faild to insert" + err)
+            res.sendStatus(500)
+            return
+        }
+
+        res.json(results)
+        console.log("Inserted",results.insertId);
+        res.end();
+    })
+})
 
 
 

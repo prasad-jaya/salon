@@ -21,10 +21,13 @@ class Navbar extends Component {
                     <li className="nav-item">
                         <a className="nav-link" href="/search">Search</a>
                     </li>
+                    <li className="nav-item">
+                        <a className="nav-link" href="/stylistHome">Stylist</a>
+                    </li>
                     </ul>
                     <form className="form-inline my-2 my-lg-0">
                     <span className="navbar-text">
-                    <a className="nav-link" href="/login">LOG IN</a> 
+                    <a className="nav-link" href="/loginn">LOG IN</a> 
                         </span>
                         <span className="navbar-text">
                     <a className="nav-link" href="/login">SIGN UP</a> 
