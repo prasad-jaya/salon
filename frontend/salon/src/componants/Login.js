@@ -45,7 +45,17 @@ class LogInn extends Component {
             localStorage.setItem('isAuthenticated', true);
             this.updateState(response.data[0].UserID);
            
-            this.props.history.push({pathname:'/stylistHome',data:response.data[0].UserID})
+            if(response.data[0].Role==="Stylist"){
+              console.log("Its Stylist Login ",response.data[0].Role);
+              this.props.history.push({pathname:'/stylistHome',data:response.data[0].UserID})
+            }
+
+            if(response.data[0].Role==="Salon"){
+              console.log("Its Salon Login ",response.data[0].Role);
+              this.props.history.push({pathname:'/search',data:response.data[0].UserID})
+            }
+
+            
            
             
 
@@ -54,6 +64,9 @@ class LogInn extends Component {
         .catch(function (error) {
           localStorage.setItem('isAuthenticated', false);
             console.log("The error is "+error);
+
+            var element = document.getElementById("alertt");
+          element.classList.remove("dis");
         });
 
        
@@ -82,9 +95,14 @@ class LogInn extends Component {
       <div className="sizee">
         {/* <button onClick={this.login}>Log IN</button> */}
 
+       
+
         <div className="card justify-content-center border-secondary text-center">
+         <div id="alertt" class="alert alert-danger dis" role="alert" >
+          This is a danger alert with <a href="#" class="alert-link">an example link</a>. Give it a click if you like.
+        </div>
           <div className="card-header">
-            <p>You must log in to view this page at {from.pathname}</p>
+            <p>You must log in to view this page </p>
             <h2>
               <strong>LogIn</strong>
             </h2>
@@ -126,6 +144,7 @@ class LogInn extends Component {
             </button>
           </div>
         </div>
+        
       </div>
     );
   }

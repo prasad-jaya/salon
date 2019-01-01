@@ -28,7 +28,7 @@ router.post('/get',(req,res)=>{
         res.json({msg:true,rows})
     }
     
-    const sqlq ="SELECT StylistID,FirstName,Description,Hr_Rate,Role FROM stylist WHERE Skills LIKE '"+typeword+"%'"
+    const sqlq ="SELECT StylistID,FirstName,Description,Hr_Rate,StylistRole FROM stylist WHERE Skills LIKE '"+typeword+"%'"
     connection.query(sqlq,(err,rows,fields) =>{
         
         if(err){
@@ -137,7 +137,7 @@ router.post('/user_login',(req, res)  =>{
 
     console.log(email,"  dfdfd  ",pass)
 
-    const sqlq ="SELECT UserID,Email,Password FROM users WHERE Email=? AND Password=?"
+    const sqlq ="SELECT UserID,Email,Password,Role FROM users WHERE Email=? AND Password=?"
     connection.query(sqlq,[email,pass],(err,rows,fields) =>{
         
         if(err){
@@ -184,8 +184,8 @@ router.get("/", (req, res) =>{
    
 })
 
-
-router.post('/create_new_stylist',(req, res) => {
+//CREATE LOGIN FOR NEW USER
+router.post('/create_new_user',(req, res) => {
     
     console.log("Last Nane:" + req.body.name)
 
@@ -202,7 +202,7 @@ router.post('/create_new_stylist',(req, res) => {
             return
         }
 
-        res.json(results)
+        res.json(results.insertId)
         console.log("Inserted",results.insertId);
         res.end();
     })

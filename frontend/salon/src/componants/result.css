@@ -96,13 +96,14 @@ body {
     top:55%;
     left:30%;
     transform:translate(-50%,-50%);
-    width:300px;
+    width:200px;
     min-height:350px;
     background:#fff;
     box-shadow:0 20px 50px rgba(0,0,0,.1);
     border-radius:10px;
     transition:0.5s;
     pointer-events: painted;
+    min-width: 300px !important;
 }
 .card:hover {
     box-shadow:0 30px 70px rgba(0,0,0,.2);

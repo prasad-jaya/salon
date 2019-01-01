@@ -34,7 +34,7 @@ class SignupMain extends Component {
       console.log("stylist " + stylist )
     
     
-      axios.post('http://localhost:3005/create_new_stylist', {
+      axios.post('http://localhost:3005/create_new_user', {
         email:emaill,
         password:passwordd,
         role:'Stylist'
@@ -42,7 +42,7 @@ class SignupMain extends Component {
         })
         .then(function (response) {
           this.props.history.push({pathname:'/signup',data:response.data})  
-          console.log(response);
+          console.log(response.data);
           
             
            
@@ -63,6 +63,29 @@ class SignupMain extends Component {
     if (document.getElementById('customRadio2').checked) {
       var owner = document.getElementById('customRadio2').value;
       console.log("owner " + owner )
+
+      axios.post('http://localhost:3005/create_new_user', {
+        email:emaill,
+        password:passwordd,
+        role:'Salon'
+        
+        })
+        .then(function (response) {
+          this.props.history.push({pathname:'/signupsalon',data:response.data})  
+          console.log(response.data);
+          
+            
+           
+           
+           
+            
+
+        }.bind(this))
+
+        .catch(function (error) {
+          
+            console.log("The error is "+error);
+        });
     
     }       
        

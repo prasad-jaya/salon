@@ -8,6 +8,8 @@ class Signup extends Component {
         super(props);
   this.state = { 
         results: [],
+        stylistrole:[],
+        StylistID:this.props.location.data
      }
 
     }
@@ -18,15 +20,17 @@ class Signup extends Component {
     
 
 
-      getKey(e){
+    getprofileKey(e){
         e.preventDefault();
-        
+        const StylistID = this.state.StylistID
         const FirstName = this.refs.fname.value
-        const city = this.refs.city.value
+        const LastName = this.refs.lname.value
+        const Addresss = this.refs.address.value
+        const cityt = this.refs.cityy.value
+        const phoneno = this.refs.phoneno.value
         var des = this.refs.description.value
-        const Rate= this.refs.rate.value
-        const email = this.refs.email.value
-        const pass = this.refs.email.value
+        const price = this.refs.price.value
+        const StylistRole = this.state.stylistrole
         const skills = document.getElementsByName('customCheck11[]');
         var len = skills.length;
         var vals = "";
@@ -41,18 +45,23 @@ class Signup extends Component {
 
          console.log("Checked boxes" + vals)
        
-        
+         console.log("cccccccc ",Addresss,cityt,phoneno,des,price,StylistRole);
 
-            axios.post('http://localhost:3005/user_create', {
+            axios.post('http://localhost:3005/create_new_stylist_profile', {
               
+              stylistid:StylistID,
               create_first_name:FirstName,
-              City:city,
+              create_last_name:LastName,
+              craete_address:Addresss,
+              City:cityt,
+              craete_phoneno:phoneno,
               Description:des,
+              craete_price:price,
+              create_Stylistrole:StylistRole,
               Skill:vals,
-              rate:Rate,
-              create_Email:email,
-              Skill:vals,
-              create_Password:pass
+              
+              
+             
             
             })
             .then(function (response) {
@@ -70,12 +79,17 @@ class Signup extends Component {
            this.setState({results: []})
        
          }
-       
+
+
+         setGender(event) {
+          console.log(event.target.value);
+          this.setState({stylistrole:event.target.value})
+        } 
 
 
     render() { 
       
-
+console.log("StylistIDDDD",this.state.StylistID)
        
         return ( 
    <div>     
@@ -96,7 +110,7 @@ class Signup extends Component {
             </div>
             <div class="form-group col-md-6">
             <label for="inputPassword4">Last Name</label>
-            <input type="text" class="form-control" id="inputlastname" placeholder="Last Name"></input>
+            <input type="text" class="form-control" id="inputlastname" placeholder="Last Name" ref="lname"></input>
             </div>
         </div>
 
@@ -105,7 +119,7 @@ class Signup extends Component {
  
   <div class="form-group">
     <label for="inputAddress">Address</label>
-    <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St"></input>
+    <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" ref="address"></input>
   </div>
 
   <div class="form-group">
@@ -116,8 +130,12 @@ class Signup extends Component {
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="inputCity">City</label>
-      <input type="text" class="form-control" id="inputCity" placeholder="Location" ref="city"></input>
+      <input type="text" class="form-control" id="inputCity" placeholder="Location" ref="cityy"></input>
     </div>
+    <div class="form-group col-md-6">
+            <label for="inputPassword4">Phone No</label>
+            <input type="text" class="form-control" id="inputlastname" placeholder="Phone No" ref="phoneno"></input>
+            </div>
     </div>
     
     <div class="form-row">
@@ -137,7 +155,7 @@ class Signup extends Component {
   <div class="input-group-prepend">
     <span class="input-group-text">$</span>
   </div>
-  <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" placeholder="Your Houly Rate" ref="rate"></input>
+  <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" placeholder="Your Houly Rate" ref="price"></input>
   <div class="input-group-append">
     <span class="input-group-text">.00</span>
   </div>
@@ -148,23 +166,23 @@ class Signup extends Component {
 
    
   </div>
-  <div class="form-row">
+  <div class="form-row" onChange={this.setGender.bind(this)}>
   <div class="form-group col-md-3">
   <div class="custom-control custom-radio custom-control-inline">
-  <input type="radio" id="customRadioInline1" name="customRadioInline1" class="custom-control-input"></input>
+  <input type="radio" id="customRadioInline1" name="customRadioInline1" class="custom-control-input" value="Stylist"></input>
   <label class="custom-control-label" for="customRadioInline1">I'm Stylist</label>
 </div>
 </div>
 <div class="form-group col-md-3">
 <div class="custom-control custom-radio custom-control-inline">
-  <input type="radio" id="customRadioInline2" name="customRadioInline1" class="custom-control-input"></input>
+  <input type="radio" id="customRadioInline2" name="customRadioInline1" class="custom-control-input" value="Educator"></input>
   <label class="custom-control-label" for="customRadioInline2">I'm Educator</label>
 </div>
 </div>
 <div class="form-group col-md-3">
 <div class="custom-control custom-radio custom-control-inline">
-  <input type="radio" id="customRadioInline2" name="customRadioInline1" class="custom-control-input"></input>
-  <label class="custom-control-label" for="customRadioInline2">I'm Stylist And Educator</label>
+  <input type="radio" id="customRadioInline3" name="customRadioInline1" class="custom-control-input" value="Stylist And Educator"></input>
+  <label class="custom-control-label" for="customRadioInline3">I'm Stylist And Educator</label>
 </div>
 </div>
 </div>
@@ -201,7 +219,7 @@ class Signup extends Component {
 </div>
 </div>
 
-  <button href="/stylistHome" type="submit" class="btn btn-dark" onClick={this.getKey.bind(this)} >CREATE PROFILE
+  <button href="/stylistHome" type="submit" class="btn btn-dark" onClick={this.getprofileKey.bind(this)} >CREATE PROFILE
   </button>
 </form>
 </div>

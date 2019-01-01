@@ -13,7 +13,8 @@ class stylistHome extends Component {
         super(props);
         this.state = {
         
-            results: {}
+            results: {},
+            StylistID:''
             
          
         };

@@ -18,18 +18,26 @@ const connection = require('../DBconnect')
 
 console.log("Heloooooo")
 
-sty.post('/create_stylist',(req, res) => {
-    console.log("create new user")
-    //res.end();
+sty.post('/create_new_stylist_profile',(req, res) => {
+    console.log("create new usersdsdsdsd")
+   
 
-    //console.log("First Nane:" + req.body.create_first_name)
-    console.log("Last Nane:" + req.body.name)
-
-    const address = req.body.create_address
-    const phoneno = req.body.create_phoneno
+  
+    const StylistID = req.body.stylistid
+    const firstname = req.body.create_first_name
+    const lastname = req.body.create_last_name
+    const addresss = req.body.craete_address
+    const city = req.body.City
+    const phoneno = req.body.craete_phoneno
+    const description = req.body.Description
+    const price = req.body.craete_price
+    const stylistrole = req.body.create_Stylistrole
+    const skills = req.body.Skill
     
-    const querysrting ="Insert Into stylist (StylistID,Name,Email,Address,Phone_No) values (1300,?,?,?,?)"
-    connection.query(querysrting, [phoneno,phoneno,address,phoneno], (err,results,fields) =>{
+    console.log("cccccccc ",addresss,city,phoneno ,description,price,stylistrole,skills);
+    
+    const query ="Insert Into stylist (StylistID,FirstName,LastName,Address,City,StylistRole,Description,PhoneNo,Hr_Rate,Skills,Stars) values (?,?,?,?,?,?,?,?,?,?,0)"
+    connection.query(query, [StylistID,firstname,lastname,addresss,city,stylistrole,description,phoneno,price,skills], (err,results,fields) =>{
         if(err){
             console.log("Faild to insert" + err)
             res.sendStatus(500)
@@ -83,16 +91,16 @@ sty.post('/stylist_load_profile',(req,res)=>{
         res.json({msg:true,rows})
     }
     
-    const sqlq ="SELECT FirstName,Email,Location,Role,Description,Stars,Skills,Hr_Rate FROM stylist WHERE StylistID = '"+ID+"'"
+    const sqlq ="SELECT FirstName,City,StylistRole,Description,Stars,Skills,Hr_Rate FROM stylist WHERE StylistID = '"+ID+"'"
     connection.query(sqlq,(err,rows,fields) =>{
         
         if(err){
-            console.log("Failed in Query "+err)
+            console.log("Failed in Query  Stylist Load Profile"+err)
             res.sendStatus(404)
             return
         }
         else{
-            console.log("Susscessfully Executed")
+            console.log("Susscessfully Executed Stylist Load Profile")
             res.json({msg:true,rows})
         }
     })

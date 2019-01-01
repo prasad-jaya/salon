@@ -1,7 +1,20 @@
-@import url(http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css);
-.bg-lightgray
-{
-    background-color:LightGray;
-    text-align: center;
-    bottom: 0;
+ .footer-copyright {
+
+    overflow: hidden;
+    background-color: rgba(0,0,0,.2);
+    color: rgba(255,255,255,.6);
+
+}
+.text-center {
+
+    text-align: center !important;
+
+}
+.pb-3, .py-3 {
+
+    padding-bottom: 1rem !important;
+
+}
+footer.footer{
+    bottom: 0 !important;
 }

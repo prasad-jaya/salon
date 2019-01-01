@@ -17,7 +17,7 @@ class Profile extends Component {
           SelectDate: [],
           SelectTime: [],
             rating: {},
-            UserId: 15,
+            // UserId: ,
             results: {},
             
          
@@ -34,7 +34,7 @@ class Profile extends Component {
 
       componentWillMount(){
         const UserID = localStorage.getItem('UserID')
-          console.log("results come from localstorage", UserID); 
+          console.log("results come from localstorage stylist load profiel", UserID); 
         const ID = this.state.UserId;
         axios.post('http://localhost:3005/stylist_load_profile', {
         word:UserID,
@@ -42,7 +42,7 @@ class Profile extends Component {
           })
         .then(function (response) {
               
-              console.log("The error is ",response.data);
+              console.log("Stylist Load Profile ",response.data);
               
               this.updateState(response.data)
               console.log("Data In result",response.data.rows)

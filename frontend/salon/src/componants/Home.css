@@ -20,8 +20,7 @@
    
   }
 .bk{
-    background: rgb(0, 0, 0); /* Fallback color */
-    background: rgba(0, 0, 0, 0.5); /* Black background with 0.5 opacity */ 
+  min-height: 560px;
 }
  
   

@@ -8,31 +8,34 @@ import LogInn from "./componants/Login";
 import Navbar from "./componants/navbar";
 import checkbooking from "./componants/stylist/checkbooking"
 import stylistHome from "./componants/stylist/StylistHome"
-
 import {
   BrowserRouter as Router,
   Link,
   Redirect,
   withRouter
 } from "react-router-dom";
+
 import updateprofiel from "./componants/stylist/Updateprofile";
 import Footer from "./componants/footer";
 import Signup from "./componants/signup"
 import SignupMain from "./componants/SignupMain";
+import Signupsalon from "./componants/signupsalon";
 
 
-let isAuthenticatedd =false
+
 
 const fakeAuth = {
-  isAuthenticated: false,
+  isAuthenticated: localStorage.getItem('UserID'),
  
   authenticate(cb) {
-    this.isAuthenticated = true;
+    // this.isAuthenticated = true;
+    localStorage.setItem('isAuthenticated', true);
     
     setTimeout(cb, 100); // fake async
   },
   signout(cb) {
-    this.isAuthenticated= false;
+    // this.isAuthenticated= false;
+    localStorage.setItem('isAuthenticated', false);
     
     setTimeout(cb, 100);
   }
@@ -147,14 +150,6 @@ class login extends Component {
 }
 
 
-// class PrivateRoute extends Component{
-
-//   render(){
-//     return(
-//        (this.props.isAuthenticated === true) ? (<Component {...this.props} />) : (<Log location={this.props.location} authenticate={this.props.authenticate} test={this.props.test}/>)
-//     )
-//   }
-// }
 
 
 
@@ -162,8 +157,8 @@ class login extends Component {
 class Layout extends Component {
   constructor(props) {
     super(props);
-    this.state={isAuthenticated: isAuthenticatedd,
-      LogStatus: isAuthenticatedd}
+    // this.state={isAuthenticated: isAuthenticatedd,
+    //   LogStatus: isAuthenticatedd}
    
 
   }
@@ -174,24 +169,26 @@ class Layout extends Component {
     // setTimeout(cb, 100); // fake async
   }
 
-  // signout() {
-  //   this.setState({isAuthenticated : false});
-  //   // setTimeout(cb, 100);
-  // }
+  signout() {
+    this.setState({isAuthenticated : false});
+    // setTimeout(cb, 100);
+  }
 
 
 
   render() {
-    console.log("Log status :",this.state.LogStatus)
+   
     return (
       <div>
-        <Navbar authenticate={this.state.LogStatus}/>
+        <Navbar />
+       
          <Route path="/" component={Navbar} /> />
         <AuthButton/>
         <Switch>
           <Route exact strict path="/" component={Home} />
           <Route exact strict path="/signup" component={Signup} />
           <Route exact strict path="/signupfirst" component={SignupMain} />
+          <Route exact strict path="/signupsalon" component={Signupsalon} />
           <Route exact strict path="/search" component={Search} />
           <Route exact strict path="/stylistHome/checkbookings" component={checkbooking} />
           <Route exact strict path="/stylistHome" component={stylistHome} />
@@ -204,8 +201,9 @@ class Layout extends Component {
           
           <PrivateRoute exact strict path="/Profile/:UserID" component={Profile} />
           <div className="container" />
+         
         </Switch>
-       
+        <Footer></Footer>
        
       </div>
     );

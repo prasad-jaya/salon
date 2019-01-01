@@ -8,6 +8,7 @@ import Footer from "./componants/footer";
 class App extends Component {
  
   render() {
+   
     return (
       <BrowserRouter>
       <div>
@@ -19,7 +20,7 @@ class App extends Component {
         {/* <div className="App"> */}
          
          <Layout/>
-         <Footer></Footer>
+        
         {/* </div>
       </div> */}
       </Switch>

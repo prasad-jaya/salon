@@ -98,7 +98,7 @@ getKey(e){
        
 
     
-   <div>
+   <div style={{minHeight:'525px'}}>
       
    <div className="cont">
    
