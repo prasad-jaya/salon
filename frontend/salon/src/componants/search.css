@@ -44,7 +44,7 @@ position: absolute; /* Position the background text */
 margin-top: 0px; /* At the bottom. Use top:0 to append it to the top */
 text-align: center;
 color: #f1f1f1; /* Grey text */
-width: 100%; /* Full width */
+width: 50%; /* Full width */
 padding: 20px; /* Some padding */
 }
 

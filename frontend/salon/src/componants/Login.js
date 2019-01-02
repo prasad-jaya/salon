@@ -10,11 +10,37 @@ import {
 } from "react-router-dom";
 import { link } from "fs";
 
+
+
+const fakeAuth = {
+  isAuthenticated: localStorage.getItem('UserID'),
+ 
+  authenticate(cb) {
+    // this.isAuthenticated = true;
+    localStorage.setItem('isAuthenticated', true);
+    
+    setTimeout(cb, 100); // fake async
+  },
+  signout(cb) {
+    // this.isAuthenticated= false;
+    localStorage.setItem('isAuthenticated', false);
+    
+    setTimeout(cb, 100);
+  }
+};
+
+
 class LogInn extends Component {
   state = {
-    redirectToReferrer: false,
-    User_ID:{}
+    redirectToReferrer: false
   };
+  login = () => {
+    fakeAuth.authenticate(() => {
+      this.setState(() => ({
+        redirectToReferrer: true
+      }))
+    })
+  }
 
   updateState(value) {
     this.setState({
@@ -41,7 +67,7 @@ class LogInn extends Component {
         
         })
         .then(function (response) {
-            console.log(response);
+            console.log("hiiiiiiiiiiiiii",response);
             localStorage.setItem('isAuthenticated', true);
             this.updateState(response.data[0].UserID);
            
@@ -52,7 +78,8 @@ class LogInn extends Component {
 
             if(response.data[0].Role==="Salon"){
               console.log("Its Salon Login ",response.data[0].Role);
-              this.props.history.push({pathname:'/search',data:response.data[0].UserID})
+              
+              this.props.history.push({pathname:'/salonhome',data:response.data[0].UserID})
             }
 
             
@@ -77,19 +104,21 @@ class LogInn extends Component {
 
 
   render() {
+
+    const { redirectToReferrer } = this.state;
+    const { from } = this.props.location.state || { from: { pathname: "/" }
+    };
+
+    if (redirectToReferrer === true) {
+      return <Redirect to={from} />;
+    }
    
     const dataa = this.state.User_ID;
     console.log("User_ID " , dataa)
 
     localStorage.setItem('UserID',dataa)
 
-    const { redirectToReferrer } = this.state;
-    const { from } = this.props.location.state || { from: { pathname: "/" }
-    };
-   
-    if (redirectToReferrer === true) {
-      return <Redirect to={from} />;
-    }
+  
 
     return (
       <div className="sizee">
@@ -99,7 +128,7 @@ class LogInn extends Component {
 
         <div className="card justify-content-center border-secondary text-center">
          <div id="alertt" class="alert alert-danger dis" role="alert" >
-          This is a danger alert with <a href="#" class="alert-link">an example link</a>. Give it a click if you like.
+          Sorry,Your records are not in our database.Not a member? <a href="/signupfirst" class="alert-link">Sign Up</a>
         </div>
           <div className="card-header">
             <p>You must log in to view this page </p>

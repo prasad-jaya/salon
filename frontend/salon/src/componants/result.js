@@ -27,7 +27,8 @@ class Result extends Component {
     if (this.props.resultsty.rows !== undefined)
       var stylists = this.props.resultsty.rows.map(name => {
         return (
-     
+          <div className="container">
+               <div className="row col-md" >
         <div key={name.StylistID} className="con">
         
     <Link  key={name.StylistID} to={{ pathname: "/Profile/"+name.StylistID, data: name.StylistID }}>
@@ -41,9 +42,8 @@ class Result extends Component {
             <div className="img">
                 <img src={require('../img/Layer4.png')} alt="Stylist Profile Pic"></img>
             </div>
-                <h2>{name.FirstName}<br></br><span>Web Graphic Designer</span></h2>
-                <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                        tempor incididunt ut labore et.</p>
+                <h2>{name.FirstName}<br></br><span>{name.StylistRole}</span></h2>
+                <p>{name.Description} </p>
                   
       
         
@@ -54,6 +54,9 @@ class Result extends Component {
 
         </Link>
         </div>
+        </div>
+        </div>
+
        );
       
     

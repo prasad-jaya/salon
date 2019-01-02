@@ -43,5 +43,30 @@ salon.post('/create_new_salon_profile',(req, res) => {
     })
 })
 
+salon.post('/salon_my_booking',(req, res) => {
+    
+    console.log("Last Nane:" + req.body.name)
+
+    
+    const styID = req.body.USERID
+    
+  
+    
+    const querysrting ="SELECT Book_ID,Book_Date,Description,Book_Time FROM booking WHERE SownerID = ? AND Status = 'Finished'"
+    connection.query(querysrting, [styID] ,(err,rows,fields) =>{
+         
+        if(err){
+            console.log("Failed in Query "+err)
+            res.sendStatus(404)
+            return
+        }
+        else{
+            console.log("Susscessfully Executed")
+            res.json({msg:true,rows})
+        }
+    })
+})
+
+
 
 module.exports = salon

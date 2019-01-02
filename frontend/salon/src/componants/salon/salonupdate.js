@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import './signupsalon.css';
+import './salonupdate.css';
 import { Link } from "react-router-dom";
 
-class Signupsalon extends Component {
+class SalonUpdate extends Component {
   constructor(props) {
         super(props);
   this.state = { 
         results: [],
-        stylistrole:[],
-        SalonID:this.props.location.data
+        // stylistrole:[],
+        // SalonID:this.props.location.data
      }
 
     }
@@ -20,52 +20,52 @@ class Signupsalon extends Component {
     
 
 
-    getSalonProfileKey(e){
-        e.preventDefault();
-        const SalonID = this.state.SalonID
-        const FirstName = this.refs.fname.value
-        const LastName = this.refs.lname.value
-        const Addresss = this.refs.address.value
-        const cityt = this.refs.cityy.value
-        const phoneno = this.refs.phoneno.value
+    // getSalonProfileKey(e){
+    //     e.preventDefault();
+    //     const SalonID = this.state.SalonID
+    //     const FirstName = this.refs.fname.value
+    //     const LastName = this.refs.lname.value
+    //     const Addresss = this.refs.address.value
+    //     const cityt = this.refs.cityy.value
+    //     const phoneno = this.refs.phoneno.value
       
 
         
 
-            axios.post('http://localhost:3005/create_new_salon_profile', {
+    //         axios.post('http://localhost:3005/create_new_stylist_profile', {
               
-              salonid:SalonID,
-              create_first_name:FirstName,
-              create_last_name:LastName,
-              craete_address:Addresss,
-              City:cityt,
-              craete_phoneno:phoneno,
+    //           salonid:SalonID,
+    //           create_first_name:FirstName,
+    //           create_last_name:LastName,
+    //           craete_address:Addresss,
+    //           City:cityt,
+    //           craete_phoneno:phoneno,
              
               
              
             
-            })
-            .then(function (response) {
-                console.log(response);
-                this.props.history.push({pathname:'/loginn'})
-                
-                this.componentWillMount()
+    //         })
+    //         .then(function (response) {
+    //             console.log(response);
+
+    //             this.updateState(response.data)
+    //             this.componentWillMount()
                
-            }.bind(this))
+    //         }.bind(this))
 
-            .catch(function (error) {
-                console.log("The error is "+error);
-            });
+    //         .catch(function (error) {
+    //             console.log("The error is "+error);
+    //         });
 
-           this.setState({results: []})
+    //        this.setState({results: []})
        
-         }
+    //      }
 
 
-         setGender(event) {
-          console.log(event.target.value);
-          this.setState({stylistrole:event.target.value})
-        } 
+    //      setGender(event) {
+    //       console.log(event.target.value);
+    //       this.setState({stylistrole:event.target.value})
+    //     } 
 
 
     render() { 
@@ -134,4 +134,4 @@ console.log("StylistIDDDD",this.state.StylistID)
     }
 }
  
-export default Signupsalon;
+export default SalonUpdate;

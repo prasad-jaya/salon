@@ -20,6 +20,7 @@ import Footer from "./componants/footer";
 import Signup from "./componants/signup"
 import SignupMain from "./componants/SignupMain";
 import Signupsalon from "./componants/signupsalon";
+import SalonHome from "./componants/salon/salonHome";
 
 
 
@@ -28,14 +29,16 @@ const fakeAuth = {
   isAuthenticated: localStorage.getItem('UserID'),
  
   authenticate(cb) {
-    // this.isAuthenticated = true;
-    localStorage.setItem('isAuthenticated', true);
+
+    
+     this.isAuthenticated = true;
+    //localStorage.setItem('isAuthenticated', true);
     
     setTimeout(cb, 100); // fake async
   },
   signout(cb) {
-    // this.isAuthenticated= false;
-    localStorage.setItem('isAuthenticated', false);
+     this.isAuthenticated= false;
+    //localStorage.setItem('isAuthenticated', false);
     
     setTimeout(cb, 100);
   }
@@ -46,7 +49,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
         fakeAuth.isAuthenticated ===true
         ? <Component {...props} />
         : <Redirect to = {{
-          pathname: '/login',
+          pathname: '/loginn',
           state: {from: props.location}
         }} />
   )}/>
@@ -189,6 +192,7 @@ class Layout extends Component {
           <Route exact strict path="/signup" component={Signup} />
           <Route exact strict path="/signupfirst" component={SignupMain} />
           <Route exact strict path="/signupsalon" component={Signupsalon} />
+          <Route exact strict path="/salonhome" component={SalonHome} />
           <Route exact strict path="/search" component={Search} />
           <Route exact strict path="/stylistHome/checkbookings" component={checkbooking} />
           <Route exact strict path="/stylistHome" component={stylistHome} />
@@ -199,11 +203,11 @@ class Layout extends Component {
           <Calender exact strict path="/calender" component={Calender} />
           <Route exact strict path="/loginn" component={LogInn} />
           
-          <PrivateRoute exact strict path="/Profile/:UserID" component={Profile} />
+          <Route exact strict path="/Profile/:UserID" component={Profile} />
           <div className="container" />
          
         </Switch>
-        <Footer></Footer>
+        {/* <Footer></Footer> */}
        
       </div>
     );

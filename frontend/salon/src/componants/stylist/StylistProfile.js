@@ -169,9 +169,7 @@ class Profile extends Component {
             <div className="feedback panel-body table profile__table">
          
                 <span className="badge badge-pill badge-secondary">{name.Skills}</span>
-                <span className="badge badge-pill badge-secondary">Success</span>
-                <span className="badge badge-pill badge-secondary">Danger</span>
-                <span className="badge badge-pill badge-secondary">Warning</span>
+               
               
       
          </div>

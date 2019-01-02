@@ -8,6 +8,7 @@ class Updateprofiel extends Component {
         super(props);
   this.state = { 
         results: [],
+        stylistrole:[],
      }
 
     }
@@ -51,9 +52,13 @@ class Updateprofiel extends Component {
         e.preventDefault();
         const UserID = localStorage.getItem('UserID')
         const FirstName = this.refs.fname.value
-        const city = this.refs.city.value
+        const LastName = this.refs.lname.value
+        const Addresss = this.refs.address.value
+        const cityt = this.refs.cityy.value
+        const phoneno = this.refs.phoneno.value
         var des = this.refs.description.value
-        const Rate= this.refs.rate.value
+        const price = this.refs.price.value
+        const StylistRole = this.state.stylistrole
         const skills = document.getElementsByName('customCheck11[]');
         var len = skills.length;
         var vals = "";
@@ -66,17 +71,22 @@ class Updateprofiel extends Component {
         if (vals) vals = vals.substring(1);
 
 
+
          console.log("Checked boxes" + vals)
        
         
 
             axios.post('http://localhost:3005/updateprofile', {
               USERID:UserID,
-              FName:FirstName,
-              City:city,
+              create_first_name:FirstName,
+              create_last_name:LastName,
+              craete_address:Addresss,
+              City:cityt,
+              craete_phoneno:phoneno,
               Description:des,
+              craete_price:price,
+              create_Stylistrole:StylistRole,
               Skill:vals,
-              rate:Rate
           
             
             })
@@ -96,7 +106,10 @@ class Updateprofiel extends Component {
        
          }
        
-
+         setGender(event) {
+          console.log(event.target.value);
+          this.setState({stylistrole:event.target.value})
+        } 
 
     render() { 
       
@@ -123,27 +136,16 @@ class Updateprofiel extends Component {
             </div>
             <div class="form-group col-md-6">
             <label for="inputPassword4">Last Name</label>
-            <input type="text" class="form-control" id="inputlastname" placeholder="LastName"></input>
+            <input type="text" class="form-control" id="inputlastname" placeholder={name.LastName} ref="lname"></input>
             </div>
         </div>
 
 
 
-  <div class="form-row">
-    <div class="form-group col-md-6">
-      <label for="inputEmail4">Email</label>
-      <input type="email" class="form-control" id="inputEmail4" placeholder={name.FirstName}></input>
-    </div>
-    <div class="form-group col-md-6">
-      <label for="inputPassword4">Password</label>
-      <input type="password" class="form-control" id="inputPassword4" placeholder="Password"></input>
-    </div>
-
-  </div>
 
   <div class="form-group">
     <label for="inputAddress">Address</label>
-    <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St"></input>
+    <input type="text" class="form-control" id="inputAddress" placeholder={name.Address} ref="address"></input>
   </div>
 
   <div class="form-group">
@@ -154,8 +156,12 @@ class Updateprofiel extends Component {
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="inputCity">City</label>
-      <input type="text" class="form-control" id="inputCity" placeholder={name.Location} ref="city"></input>
+      <input type="text" class="form-control" id="inputCity" placeholder={name.City} ref="cityy"></input>
     </div>
+    <div class="form-group col-md-6">
+            <label for="inputPassword4">Phone No</label>
+            <input type="text" class="form-control" id="inputlastname" placeholder={name.PhoneNo} ref="phoneno"></input>
+            </div>
     </div>
     
     <div class="form-row">
@@ -175,7 +181,7 @@ class Updateprofiel extends Component {
   <div class="input-group-prepend">
     <span class="input-group-text">$</span>
   </div>
-  <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" placeholder={name.Hr_Rate} ref="rate"></input>
+  <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" placeholder={name.Hr_Rate} ref="price"></input>
   <div class="input-group-append">
     <span class="input-group-text">.00</span>
   </div>
@@ -186,7 +192,7 @@ class Updateprofiel extends Component {
 
    
   </div>
-  <div class="form-row">
+  <div class="form-row" onChange={this.setGender.bind(this)}>
   <div class="form-group col-md-3">
   <div class="custom-control custom-radio custom-control-inline">
   <input type="radio" id="customRadioInline1" name="customRadioInline1" class="custom-control-input"></input>
@@ -201,8 +207,8 @@ class Updateprofiel extends Component {
 </div>
 <div class="form-group col-md-3">
 <div class="custom-control custom-radio custom-control-inline">
-  <input type="radio" id="customRadioInline2" name="customRadioInline1" class="custom-control-input"></input>
-  <label class="custom-control-label" for="customRadioInline2">I'm Stylist And Educator</label>
+  <input type="radio" id="customRadioInline3" name="customRadioInline1" class="custom-control-input"></input>
+  <label class="custom-control-label" for="customRadioInline3">I'm Stylist And Educator</label>
 </div>
 </div>
 </div>

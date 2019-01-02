@@ -65,6 +65,7 @@ class Calender extends Component {
         this.setState({Rate:rate})
         this.setState({Description:description})
 
+        this.getBookKey()
      
         this.setState({ Amount:rate*4})
   
@@ -475,16 +476,17 @@ class Calender extends Component {
     senddate(){
         this.props.getdate(this.state.Datacollection,this.state.TimeSlot);
     }
-    getKey(e){
-        e.preventDefault();
 
+    getBookKey(e){
+        //e.preventDefault();
+        console.log("Im book")
             const UserID = localStorage.getItem('UserID')
             const styIDd = localStorage.getItem('StylistID')
             const Des = localStorage.getItem('Description')
             const Sdate = this.state.Datacollection
             const sTimee = this.state.TimeSlot
 
-            axios.post('http://localhost:3005/make_book', {
+            axios.post('http://localhost:3005/make_bookk', {
                 styID:styIDd,
                 sDate:Sdate,
                 sTime:sTimee,
@@ -826,7 +828,7 @@ class Calender extends Component {
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <Link to="/">
-        <button type="button" class="btn btn-primary" onClick={this.getKey.bind(this)}  onClick={this.routeChange}>Book Now</button>
+        <button type="button" class="btn btn-primary" onClick={this.getBookKey.bind(this)}  onClick={this.routeChange}>Book Now</button>
         </Link>
       </div>
     </div>

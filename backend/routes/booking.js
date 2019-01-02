@@ -15,7 +15,7 @@ const connection = require('../DBconnect')
 
 
 //MAKE BOOK
-booking.post('/make_book',(req, res) => {
+booking.post('/make_bookk',(req, res) => {
     
     console.log("Last Nane:" + req.body.name)
 
@@ -26,7 +26,7 @@ booking.post('/make_book',(req, res) => {
     const sTime =req.body.sTime
     const Descrip = req.body.Description
   
-    
+    console.log("Lasstrtttt",Status,styID)
     const querysrting ="Insert Into booking (Description,StylistID,SownerID,Book_Date,Book_Time,Status) values (?,?,?,?,?,?)"
     connection.query(querysrting, [Descrip,styID,SOWNERID,sDate,sTime,'Pending'], (err,results,fields) =>{
         if(err){
@@ -172,5 +172,34 @@ booking.post('/done-project',(req, res) => {
 })
 
 
+
+booking.post('/done_and_release',(req, res) => {
+    
+    console.log("Last Nane:" + req.body.name)
+
+    
+   
+    
+  
+    
+    const styID = req.body.USERID
+    const bookID = req.body.BOODID
+    
+  
+    
+    const querysrting ="UPDATE booking SET Status = 'Released' WHERE StylistID = ? AND Book_ID = ?"
+    connection.query(querysrting, [styID,bookID] , (err,rows,fields) =>{
+         
+        if(err){
+            console.log("Failed in Query "+err)
+            res.sendStatus(404)
+            return
+        }
+        else{
+            console.log("Susscessfully confirm Booking")
+            res.json({msg:true,rows})
+        }
+    })
+})
 
 module.exports = booking

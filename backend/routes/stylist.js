@@ -61,7 +61,7 @@ sty.post('/get/stylist',(req,res)=>{
         res.json({msg:true,rows})
     }
     
-    const sqlq ="SELECT FirstName,Email,Location,Role,Description,Stars,Skills,Hr_Rate FROM stylist WHERE StylistID = '"+ID+"'"
+    const sqlq ="SELECT FirstName,LastName,City,PhoneNo,StylistRole,Description,Stars,Skills,Hr_Rate FROM stylist WHERE StylistID = '"+ID+"'"
     connection.query(sqlq,(err,rows,fields) =>{
         
         if(err){
@@ -91,7 +91,7 @@ sty.post('/stylist_load_profile',(req,res)=>{
         res.json({msg:true,rows})
     }
     
-    const sqlq ="SELECT FirstName,City,StylistRole,Description,Stars,Skills,Hr_Rate FROM stylist WHERE StylistID = '"+ID+"'"
+    const sqlq ="SELECT FirstName,LastName,Address,City,PhoneNo,StylistRole,Description,Stars,Skills,Hr_Rate FROM stylist WHERE StylistID = '"+ID+"'"
     connection.query(sqlq,(err,rows,fields) =>{
         
         if(err){
@@ -114,20 +114,25 @@ sty.post('/updateprofile',(req,res)=>{
 
     
     const ID = req.body.USERID
-    const FirstName = req.body.FName
+    const FirstName = req.body.create_first_name
+    const LastName = req.body.create_last_name
+    const address = req.body.craete_address
     const city = req.body.City
+    const Phoneno = req.body.craete_phoneno
     const des = req.body.Description
+    const Price = req.body.craete_price
+    const Role = req.body.create_Stylistrole
     const skill = req.body.Skill
-    const Rate = req.body.rate
+    
     console.log("addddooo",ID);
 
     if(ID==''){
         console.log("huuuuIIII");
         res.json({msg:true,rows})
     }
-    
-    const sqlq ="UPDATE stylist SET FirstName = ?,Email = 'halo@dfg', Location = ?, Role = 'Stylist' ,Description = ?,Skills = ?,Hr_Rate = ? WHERE StylistID = '"+ID+"'"
-    connection.query(sqlq,[FirstName,city,des,skill,Rate] ,(err,rows,fields) =>{
+    console.log("Roleeeee",Role)
+    const sqlq ="UPDATE stylist SET FirstName = ?,LastName = ?,Address = ?, City = ?, PhoneNo=?, StylistRole = ? , Description = ?,Skills = ?,Hr_Rate = ? WHERE StylistID = '"+ID+"'"
+    connection.query(sqlq,[FirstName,LastName,address,city,Phoneno,Role,des,skill,Price] ,(err,rows,fields) =>{
         
         if(err){
             console.log("Failed in Query "+err)

@@ -98,7 +98,7 @@ getKey(e){
        
 
     
-   <div style={{minHeight:'525px'}}>
+   <div style={{minHeight:'742px'}}>
       
    <div className="cont">
    
@@ -114,6 +114,7 @@ getKey(e){
             </div>
             </div>
             <div id="container custom-search-input">
+            
                 <div className="input-group col-md">
                     <input type="text" className="form-control input-lg" placeholder="Search here.." onChange = {this.getinput} ref="inputword" />
                    

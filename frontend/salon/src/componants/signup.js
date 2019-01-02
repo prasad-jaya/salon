@@ -43,7 +43,7 @@ class Signup extends Component {
         if (vals) vals = vals.substring(1);
 
 
-         console.log("Checked boxes" + vals)
+         console.log("Checked boxes" + this.state.stylistrole)
        
          console.log("cccccccc ",Addresss,cityt,phoneno,des,price,StylistRole);
 
@@ -65,9 +65,12 @@ class Signup extends Component {
             
             })
             .then(function (response) {
-                console.log(response);
+                
+              this.props.history.push({pathname:'/loginn'})
+              console.log(response);
 
-                this.updateState(response.data)
+               
+                
                 this.componentWillMount()
                
             }.bind(this))

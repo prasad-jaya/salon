@@ -1,10 +1,25 @@
 import React, { Component } from 'react';
 
 
+
 class Navbar extends Component {
-    state = {  }
+    state = { 
+        logstate:'LOG IN'
+     }
+
+     componentWillMount(){
+
+        if(localStorage.getItem('UserID')===true){
+           
+            this.setSate({lostate:'LOG OUT'})
+        }
+        if(localStorage.getItem('UserID')===false){
+            this.setSate({lostate:'LOG IN'})
+        }
+
+     }
     render() {
-        console.log("Result wassss :",this.props.authenticate) 
+       // console.log("Result wassss :",this.props.authenticate) 
         return (
              
             <nav className="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
@@ -22,7 +37,10 @@ class Navbar extends Component {
                         <a className="nav-link" href="/search">Search</a>
                     </li>
                     <li className="nav-item">
-                        <a className="nav-link" href="/stylistHome">Stylist</a>
+                        <a className="nav-link" href="/loginn">Stylist</a>
+                    </li>
+                    <li className="nav-item">
+                        <a className="nav-link" href="/loginn">Salon</a>
                     </li>
                     </ul>
                     <form className="form-inline my-2 my-lg-0">
@@ -30,10 +48,9 @@ class Navbar extends Component {
                     <a className="nav-link" href="/loginn">LOG IN</a> 
                         </span>
                         <span className="navbar-text">
-                    <a className="nav-link" href="/login">SIGN UP</a> 
+                    <a className="nav-link" href="/signupfirst">SIGN UP</a> 
                         </span>
-                        {/* <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"></input>
-                        <button className="btn btn-outline-light " type="submit">Search</button> */}
+                    
                         </form>
                    
                 </div>
